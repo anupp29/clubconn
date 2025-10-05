@@ -1,0 +1,396 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ========================================================================
+    // HELPER FUNCTIONS
+    // ========================================================================
+    
+    // Check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Get current user ID
+    function currentUser() {
+      return request.auth.uid;
+    }
+    
+    // Check if user is platform admin
+    function isPlatformAdmin() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(currentUser())).data.platform_role == 'platform_admin';
+    }
+    
+    // Check if user belongs to a specific college
+    function userBelongsToCollege(collegeId) {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(currentUser())).data.college_id == collegeId;
+    }
+    
+    // Check if user is a member of a club with specific role
+    function isClubMember(clubId) {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/clubs/$(clubId)/members/$(currentUser()));
+    }
+    
+    function getClubMemberRole(clubId) {
+      return get(/databases/$(database)/documents/clubs/$(clubId)/members/$(currentUser())).data.role;
+    }
+    
+    function isClubCoordinator(clubId) {
+      return isClubMember(clubId) && 
+             getClubMemberRole(clubId) == 'club_coordinator';
+    }
+    
+    function isClubLead(clubId) {
+      return isClubMember(clubId) && 
+             getClubMemberRole(clubId) in ['club_coordinator', 'lead', 'co-lead'];
+    }
+    
+    function isClubSecretary(clubId) {
+      return isClubMember(clubId) && 
+             getClubMemberRole(clubId) in ['club_coordinator', 'lead', 'co-lead', 'secretary', 'joint-secretary'];
+    }
+    
+    // Check if user is a member of a city community with specific role
+    function isCommunityMember(communityId) {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/city_communities/$(communityId)/members/$(currentUser()));
+    }
+    
+    function getCommunityMemberRole(communityId) {
+      return get(/databases/$(database)/documents/city_communities/$(communityId)/members/$(currentUser())).data.role;
+    }
+    
+    function isCommunityLead(communityId) {
+      return isCommunityMember(communityId) && 
+             getCommunityMemberRole(communityId) in ['lead', 'co-lead'];
+    }
+    
+    // Check if user's college is associated with a city community
+    function userCollegeInCommunity(communityId) {
+      let userCollegeId = get(/databases/$(database)/documents/users/$(currentUser())).data.college_id;
+      let community = get(/databases/$(database)/documents/city_communities/$(communityId)).data;
+      return userCollegeId in community.associated_college_ids;
+    }
+    
+    // Check if user can edit city community (lead/co-lead + from associated college)
+    function canEditCommunity(communityId) {
+      return isPlatformAdmin() || 
+             (isCommunityLead(communityId) && userCollegeInCommunity(communityId));
+    }
+    
+    // Check if user is hall coordinator
+    function isHallCoordinator() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(currentUser())).data.platform_role == 'hall_coordinator';
+    }
+    
+    // ========================================================================
+    // USERS COLLECTION
+    // ========================================================================
+    
+    match /users/{userId} {
+      // Anyone can read user profiles
+      allow read: if true;
+      
+      // Users can create their own profile
+      allow create: if isSignedIn() && currentUser() == userId;
+      
+      // Users can update their own profile, admins can update any
+      allow update: if isPlatformAdmin() || 
+                       (isSignedIn() && currentUser() == userId);
+      
+      // Only admins can delete users
+      allow delete: if isPlatformAdmin();
+    }
+    
+    // ========================================================================
+    // USERNAMES COLLECTION
+    // ========================================================================
+    
+    match /usernames/{username} {
+      // Anyone can read to check availability
+      allow read: if true;
+      
+      // Only the user can create/update their username mapping
+      allow create, update: if isSignedIn() && 
+                               request.resource.data.uid == currentUser();
+      
+      // Only the user or admin can delete
+      allow delete: if isPlatformAdmin() || 
+                       (isSignedIn() && resource.data.uid == currentUser());
+    }
+    
+    // ========================================================================
+    // COLLEGES COLLECTION
+    // ========================================================================
+    
+    match /colleges/{collegeId} {
+      // Anyone can read colleges
+      allow read: if true;
+      
+      // Only admins can create/update/delete colleges
+      allow create, update, delete: if isPlatformAdmin();
+    }
+    
+    // ========================================================================
+    // CITY COMMUNITIES COLLECTION
+    // ========================================================================
+    
+    match /city_communities/{communityId} {
+      // Anyone can read communities
+      allow read: if true;
+      
+      // Admins can create communities
+      allow create: if isPlatformAdmin();
+      
+      // Only leads/co-leads from associated colleges can edit
+      allow update: if canEditCommunity(communityId);
+      
+      // Only admins can delete
+      allow delete: if isPlatformAdmin();
+      
+      // Community members subcollection
+      match /members/{memberId} {
+        // Anyone can read members
+        allow read: if true;
+        
+        // Leads can add/remove members
+        allow create, delete: if canEditCommunity(communityId);
+        
+        // Leads can update member roles
+        allow update: if canEditCommunity(communityId);
+      }
+    }
+    
+    // ========================================================================
+    // CLUBS COLLECTION
+    // ========================================================================
+    
+    match /clubs/{clubId} {
+      // Anyone can read clubs
+      allow read: if true;
+      
+      // Users from the college can create clubs
+      allow create: if isSignedIn() && 
+                       userBelongsToCollege(request.resource.data.college_id);
+      
+      // Club coordinators, leads, and admins can update
+      allow update: if isPlatformAdmin() || 
+                       isClubCoordinator(clubId) || 
+                       isClubLead(clubId);
+      
+      // Only admins and club coordinators can delete
+      allow delete: if isPlatformAdmin() || isClubCoordinator(clubId);
+      
+      // Club members subcollection
+      match /members/{memberId} {
+        // Anyone can read members
+        allow read: if true;
+        
+        // Club leads can add members
+        allow create: if isClubLead(clubId);
+        
+        // Club leads can update member roles (except club_coordinator)
+        allow update: if isClubLead(clubId) && 
+                         request.resource.data.role != 'club_coordinator';
+        
+        // Club coordinators can update any role
+        allow update: if isClubCoordinator(clubId);
+        
+        // Club leads can remove members (except coordinators)
+        allow delete: if isClubLead(clubId) && 
+                         resource.data.role != 'club_coordinator';
+        
+        // Coordinators and admins can remove anyone
+        allow delete: if isPlatformAdmin() || isClubCoordinator(clubId);
+      }
+    }
+    
+    // ========================================================================
+    // EVENTS COLLECTION
+    // ========================================================================
+    
+    match /events/{eventId} {
+      // Anyone can read published events
+      allow read: if resource.data.status == 'published' || 
+                     resource.data.status == 'ongoing' || 
+                     resource.data.status == 'completed';
+      
+      // Organizers and admins can read draft events
+      allow read: if isPlatformAdmin() || 
+                     (resource.data.organizer_type == 'club' && 
+                      isClubSecretary(resource.data.organizer_id)) ||
+                     (resource.data.organizer_type == 'city_community' && 
+                      isCommunityLead(resource.data.organizer_id));
+      
+      // Club secretaries can create events for their club
+      allow create: if isSignedIn() && 
+                       ((request.resource.data.organizer_type == 'club' && 
+                         isClubSecretary(request.resource.data.organizer_id)) ||
+                        (request.resource.data.organizer_type == 'city_community' && 
+                         isCommunityLead(request.resource.data.organizer_id)));
+      
+      // Organizers can update their events
+      allow update: if isPlatformAdmin() || 
+                       (resource.data.organizer_type == 'club' && 
+                        isClubSecretary(resource.data.organizer_id)) ||
+                       (resource.data.organizer_type == 'city_community' && 
+                        isCommunityLead(resource.data.organizer_id));
+      
+      // Only coordinators, leads, and admins can delete
+      allow delete: if isPlatformAdmin() || 
+                       (resource.data.organizer_type == 'club' && 
+                        isClubLead(resource.data.organizer_id)) ||
+                       (resource.data.organizer_type == 'city_community' && 
+                        isCommunityLead(resource.data.organizer_id));
+      
+      // Event participants subcollection
+      match /participants/{participantId} {
+        // Anyone can read participants
+        allow read: if true;
+        
+        // Users can RSVP to events
+        allow create: if isSignedIn() && currentUser() == participantId;
+        
+        // Users can update their own RSVP
+        allow update: if isSignedIn() && 
+                         (currentUser() == participantId || 
+                          isPlatformAdmin() || 
+                          (get(/databases/$(database)/documents/events/$(eventId)).data.organizer_type == 'club' && 
+                           isClubSecretary(get(/databases/$(database)/documents/events/$(eventId)).data.organizer_id)));
+        
+        // Users can delete their own RSVP
+        allow delete: if isSignedIn() && currentUser() == participantId;
+      }
+    }
+    
+    // ========================================================================
+    // SUBMISSIONS COLLECTION
+    // ========================================================================
+    
+    match /submissions/{submissionId} {
+      // Submitter and event organizers can read
+      allow read: if isPlatformAdmin() || 
+                     resource.data.submitted_by == currentUser() ||
+                     resource.data.submitted_by in resource.data.team_members;
+      
+      // Event organizers can read all submissions
+      allow read: if exists(/databases/$(database)/documents/events/$(resource.data.event_id)) &&
+                     (isClubSecretary(get(/databases/$(database)/documents/events/$(resource.data.event_id)).data.organizer_id) ||
+                      isCommunityLead(get(/databases/$(database)/documents/events/$(resource.data.event_id)).data.organizer_id));
+      
+      // Users can create submissions for events
+      allow create: if isSignedIn() && 
+                       request.resource.data.submitted_by == currentUser();
+      
+      // Submitters can update their own submissions
+      allow update: if isSignedIn() && resource.data.submitted_by == currentUser();
+      
+      // Event organizers can update submission status/evaluation
+      allow update: if isPlatformAdmin() ||
+                       (exists(/databases/$(database)/documents/events/$(resource.data.event_id)) &&
+                        (isClubSecretary(get(/databases/$(database)/documents/events/$(resource.data.event_id)).data.organizer_id) ||
+                         isCommunityLead(get(/databases/$(database)/documents/events/$(resource.data.event_id)).data.organizer_id)));
+      
+      // Only submitter and admins can delete
+      allow delete: if isPlatformAdmin() || 
+                       (isSignedIn() && resource.data.submitted_by == currentUser());
+    }
+    
+    // ========================================================================
+    // HALL REQUESTS COLLECTION
+    // ========================================================================
+    
+    match /hall_requests/{requestId} {
+      // Club members and admins can read their club's requests
+      allow read: if isPlatformAdmin() || 
+                     isHallCoordinator() ||
+                     isClubMember(resource.data.club_id);
+      
+      // Club secretaries can create hall requests
+      allow create: if isSignedIn() && 
+                       isClubSecretary(request.resource.data.club_id);
+      
+      // Club leads can update pending requests
+      allow update: if resource.data.status == 'pending' && 
+                       isClubLead(resource.data.club_id);
+      
+      // Hall coordinators and admins can approve/reject
+      allow update: if isPlatformAdmin() || isHallCoordinator();
+      
+      // Only admins and club coordinators can delete
+      allow delete: if isPlatformAdmin() || 
+                       isClubCoordinator(resource.data.club_id);
+    }
+    
+    // ========================================================================
+    // MESSAGES COLLECTION
+    // ========================================================================
+    
+    match /messages/{messageId} {
+      // Only sender and recipient can read
+      allow read: if isPlatformAdmin() || 
+                     resource.data.from_uid == currentUser() || 
+                     resource.data.to_uid == currentUser();
+      
+      // Users can send messages
+      allow create: if isSignedIn() && 
+                       request.resource.data.from_uid == currentUser();
+      
+      // Only recipient can update (mark as read)
+      allow update: if isSignedIn() && resource.data.to_uid == currentUser();
+      
+      // Sender and recipient can delete
+      allow delete: if isPlatformAdmin() || 
+                       resource.data.from_uid == currentUser() || 
+                       resource.data.to_uid == currentUser();
+    }
+    
+    // ========================================================================
+    // AUDIT LOGS COLLECTION
+    // ========================================================================
+    
+    match /audit_logs/{logId} {
+      // Only admins can read audit logs
+      allow read: if isPlatformAdmin();
+      
+      // Only system (Cloud Functions) can write audit logs
+      // In practice, this is enforced by not granting write access
+      allow write: if false;
+    }
+    
+    // ========================================================================
+    // NOTIFICATIONS COLLECTION
+    // ========================================================================
+    
+    match /notifications/{notificationId} {
+      // Only the recipient can read their notifications
+      allow read: if isSignedIn() && resource.data.user_id == currentUser();
+      
+      // System creates notifications (Cloud Functions)
+      allow create: if false;
+      
+      // Users can update their own notifications (mark as read)
+      allow update: if isSignedIn() && resource.data.user_id == currentUser();
+      
+      // Users can delete their own notifications
+      allow delete: if isSignedIn() && resource.data.user_id == currentUser();
+    }
+    
+    // ========================================================================
+    // ROLE TYPES COLLECTION (Read-only reference data)
+    // ========================================================================
+    
+    match /role_types/{roleId} {
+      // Anyone can read role types
+      allow read: if true;
+      
+      // Only admins can modify
+      allow write: if isPlatformAdmin();
+    }
+  }
+}
