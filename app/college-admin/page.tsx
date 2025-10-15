@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -19,6 +20,9 @@ import {
   BarChart3,
   FileText,
   AlertCircle,
+  ExternalLink,
+  Settings,
+  UserCircle,
 } from "lucide-react"
 import {
   getPlatformStats,
@@ -204,47 +208,95 @@ export default function CollegeAdminDashboard() {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Total Users</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats?.totalUsers || 0}</div>
-              <p className="text-xs text-muted-foreground">{stats?.activeUsers || 0} active</p>
+              <div className="text-2xl font-bold text-primary">{stats?.totalUsers || 0}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-emerald-600 font-semibold">{stats?.activeUsers || 0}</span> active users
+              </p>
+              <div className="mt-2 flex items-center gap-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
+                  <div
+                    className="bg-emerald-500 h-2 rounded-full transition-all"
+                    style={{
+                      width: `${stats?.totalUsers ? (stats.activeUsers / stats.totalUsers) * 100 : 0}%`,
+                    }}
+                  />
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {stats?.totalUsers ? Math.round((stats.activeUsers / stats.totalUsers) * 100) : 0}%
+                </span>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Total Clubs</CardTitle>
               <Building2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats?.totalClubs || 0}</div>
-              <p className="text-xs text-muted-foreground">{stats?.pendingClubs || 0} pending approval</p>
+              <div className="text-2xl font-bold text-primary">{stats?.totalClubs || 0}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-amber-600 font-semibold">{stats?.pendingClubs || 0}</span> pending approval
+              </p>
+              <div className="mt-2 flex items-center gap-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
+                  <div
+                    className="bg-blue-500 h-2 rounded-full transition-all"
+                    style={{
+                      width: `${stats?.totalClubs ? (stats.activeClubs / stats.totalClubs) * 100 : 0}%`,
+                    }}
+                  />
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {stats?.totalClubs ? Math.round((stats.activeClubs / stats.totalClubs) * 100) : 0}% active
+                </span>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Total Events</CardTitle>
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats?.totalEvents || 0}</div>
-              <p className="text-xs text-muted-foreground">{stats?.upcomingEvents || 0} upcoming</p>
+              <div className="text-2xl font-bold text-primary">{stats?.totalEvents || 0}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                <span className="text-purple-600 font-semibold">{stats?.upcomingEvents || 0}</span> upcoming
+              </p>
+              <div className="mt-2 flex items-center gap-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
+                  <div
+                    className="bg-purple-500 h-2 rounded-full transition-all"
+                    style={{
+                      width: `${stats?.totalEvents ? (stats.upcomingEvents / stats.totalEvents) * 100 : 0}%`,
+                    }}
+                  />
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {stats?.totalEvents ? Math.round((stats.upcomingEvents / stats.totalEvents) * 100) : 0}% upcoming
+                </span>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Growth (30d)</CardTitle>
               <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+{analytics?.userGrowth || 0}</div>
-              <p className="text-xs text-muted-foreground">new users</p>
+              <div className="text-2xl font-bold text-emerald-600">+{analytics?.userGrowth || 0}</div>
+              <p className="text-xs text-muted-foreground mt-1">new users this month</p>
+              <p className="text-xs text-muted-foreground mt-2">
+                <span className="text-blue-600 font-semibold">+{analytics?.clubGrowth || 0}</span> new clubs
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -348,9 +400,17 @@ export default function CollegeAdminDashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {clubs.map((club: any) => (
-                    <div key={club.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div
+                      key={club.id}
+                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       <div className="flex-1">
-                        <h3 className="font-semibold">{club.name}</h3>
+                        <Link href={`/clubs/${club.id}`} className="hover:underline">
+                          <h3 className="font-semibold text-lg flex items-center gap-2">
+                            {club.name}
+                            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                          </h3>
+                        </Link>
                         <p className="text-sm text-muted-foreground">{club.college_name}</p>
                         <div className="flex gap-2 mt-2">
                           <Badge variant={club.is_verified ? "default" : "secondary"}>
@@ -360,9 +420,16 @@ export default function CollegeAdminDashboard() {
                             {club.is_active ? "Active" : "Inactive"}
                           </Badge>
                           <Badge variant="outline">{club.category}</Badge>
+                          <Badge variant="outline">{club.member_count || 0} members</Badge>
                         </div>
                       </div>
                       <div className="flex gap-2">
+                        <Link href={`/clubs/${club.id}/admin`}>
+                          <Button size="sm" variant="outline">
+                            <Settings className="h-4 w-4 mr-1" />
+                            Admin
+                          </Button>
+                        </Link>
                         {!club.is_verified && (
                           <Button
                             size="sm"
@@ -399,9 +466,17 @@ export default function CollegeAdminDashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {users.slice(0, 20).map((user: any) => (
-                    <div key={user.uid} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div
+                      key={user.uid}
+                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       <div className="flex-1">
-                        <h3 className="font-semibold">{user.displayName}</h3>
+                        <Link href={`/u/${user.username || user.uid}`} className="hover:underline">
+                          <h3 className="font-semibold text-lg flex items-center gap-2">
+                            {user.displayName}
+                            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                          </h3>
+                        </Link>
                         <p className="text-sm text-muted-foreground">{user.email}</p>
                         <div className="flex gap-2 mt-2">
                           <Badge variant={user.platform_role === "platform_admin" ? "default" : "secondary"}>
@@ -411,7 +486,16 @@ export default function CollegeAdminDashboard() {
                             {user.is_active ? "Active" : "Inactive"}
                           </Badge>
                           {user.college_name && <Badge variant="outline">{user.college_name}</Badge>}
+                          {user.total_xp && <Badge variant="outline">{user.total_xp} XP</Badge>}
                         </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Link href={`/u/${user.username || user.uid}`}>
+                          <Button size="sm" variant="outline">
+                            <UserCircle className="h-4 w-4 mr-1" />
+                            Profile
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   ))}
@@ -430,9 +514,17 @@ export default function CollegeAdminDashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {events.slice(0, 20).map((event: any) => (
-                    <div key={event.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div
+                      key={event.id}
+                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
                       <div className="flex-1">
-                        <h3 className="font-semibold">{event.title}</h3>
+                        <Link href={`/clubs/${event.club_id}/${event.slug || event.id}`} className="hover:underline">
+                          <h3 className="font-semibold text-lg flex items-center gap-2">
+                            {event.title}
+                            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                          </h3>
+                        </Link>
                         <p className="text-sm text-muted-foreground">{event.organizer_name}</p>
                         <div className="flex gap-2 mt-2">
                           <Badge variant="outline">{event.event_type}</Badge>
@@ -443,6 +535,11 @@ export default function CollegeAdminDashboard() {
                       <div className="text-right">
                         <p className="text-sm font-medium">{event.start_date?.toDate?.()?.toLocaleDateString()}</p>
                         <Badge variant={event.status === "published" ? "default" : "secondary"}>{event.status}</Badge>
+                        <Link href={`/clubs/${event.club_id}/${event.slug || event.id}`} className="block mt-2">
+                          <Button size="sm" variant="outline">
+                            View Event
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   ))}
