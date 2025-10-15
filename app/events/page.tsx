@@ -43,7 +43,7 @@ export default function EventsPage() {
       attendees: 250,
       badge: "Must Attend",
       color: "from-blue-500 to-cyan-500",
-      link: "https://connclub.vercel.app/c/csi",
+      link: "/clubs/csi/techfest-2024",
     },
     {
       tag: "DEBUGGERS",
@@ -54,7 +54,7 @@ export default function EventsPage() {
       attendees: 120,
       badge: null,
       color: "from-purple-500 to-pink-500",
-      link: "https://connclub.vercel.app/c/debuggers",
+      link: "/clubs/debuggers/equinox-2024",
     },
     {
       tag: "DESOC",
@@ -65,7 +65,7 @@ export default function EventsPage() {
       attendees: 80,
       badge: "Must Attend",
       color: "from-orange-500 to-red-500",
-      link: "https://connclub.vercel.app/c/desoc",
+      link: "/clubs/desoc/design-sprint-2024",
     },
     {
       tag: "PHOENIX",
@@ -76,7 +76,7 @@ export default function EventsPage() {
       attendees: 300,
       badge: "Featured",
       color: "from-emerald-500 to-teal-500",
-      link: "https://connclub.vercel.app/c/phoenix",
+      link: "/clubs/phoenix/phoenix-codefest-2024",
     },
     {
       tag: "MIBCS",
@@ -87,7 +87,7 @@ export default function EventsPage() {
       attendees: 150,
       badge: "Must Attend",
       color: "from-violet-500 to-purple-500",
-      link: "https://connclub.vercel.app/c/mibcs",
+      link: "/clubs/mibcs/data-science-summit-2024",
     },
     {
       tag: "FOSS",
@@ -98,7 +98,7 @@ export default function EventsPage() {
       attendees: 200,
       badge: "Featured",
       color: "from-green-500 to-emerald-500",
-      link: "https://connclub.vercel.app/c/foss",
+      link: "/clubs/foss/foss-meetup-2024",
     },
     {
       tag: "CSI",
@@ -109,7 +109,7 @@ export default function EventsPage() {
       attendees: 100,
       badge: null,
       color: "from-blue-500 to-cyan-500",
-      link: "https://connclub.vercel.app/c/csi",
+      link: "/clubs/csi/c2c",
     },
     {
       tag: "DESOC",
@@ -120,7 +120,7 @@ export default function EventsPage() {
       attendees: 60,
       badge: "Featured",
       color: "from-orange-500 to-red-500",
-      link: "https://connclub.vercel.app/c/desoc",
+      link: "/clubs/desoc/design-sprint-2024",
     },
   ]
 
@@ -234,7 +234,7 @@ export default function EventsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {upcomingEvents.map((event, index) => (
-              <Link key={index} href={event.link} target="_blank" rel="noopener noreferrer" className="block">
+              <Link key={index} href={event.link} className="block">
                 <Card className="group relative overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border-border/50 hover:border-primary/50 h-full">
                   <div className={`h-1 w-full bg-gradient-to-r ${event.color}`} />
 
@@ -278,9 +278,11 @@ export default function EventsPage() {
 
           <div className="mt-16 text-center">
             <p className="text-muted-foreground mb-4">Don't see your club's event?</p>
-            <Button size="lg" className="shadow-lg hover:scale-105 transition-all">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Submit Your Event
+            <Button size="lg" asChild className="shadow-lg hover:scale-105 transition-all">
+              <Link href="/dashboard">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Submit Your Event
+              </Link>
             </Button>
           </div>
         </div>
