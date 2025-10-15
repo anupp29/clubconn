@@ -213,6 +213,7 @@ export default function CityCommunitPage() {
       location: `Tech Hub, ${community.city}`,
       badge: "Must Attend",
       time: "To be Announced",
+      slug: "monthly-meetup-nov-2025",
     },
   ]
 
@@ -222,48 +223,56 @@ export default function CityCommunitPage() {
       title: `${community.name} Conference 2025`,
       location: `${community.city} Convention Center`,
       organizer: "Tech Events Co.",
+      slug: "conference-2025",
     },
     {
       date: "23 Aug 2025",
       title: "Workshop: Advanced Topics",
       location: "Innovation Hub",
       organizer: "Community Team",
+      slug: "workshop-advanced-topics",
     },
     {
       date: "16 Jul 2025",
       title: "Summer Meetup 2025",
       location: `${community.city} Tech Park`,
       organizer: "Local Chapter",
+      slug: "summer-meetup-2025",
     },
     {
       date: "24 May 2025",
       title: "Hackathon Weekend",
       location: "Startup Incubator",
       organizer: "Dev Community",
+      slug: "hackathon-weekend",
     },
     {
       date: "26 Apr 2025",
       title: "April Meetup",
       location: "Co-working Space",
       organizer: "Organizers Team",
+      slug: "april-meetup",
     },
     {
       date: "22 Mar 2025",
       title: "March Tech Talk",
       location: "University Campus",
       organizer: "Student Chapter",
+      slug: "march-tech-talk",
     },
     {
       date: "23 Jan 2025",
       title: "New Year Kickoff",
       location: "Tech Center",
       organizer: "Core Team",
+      slug: "new-year-kickoff",
     },
     {
       date: "20 Jan 2025",
       title: "January Meetup",
       location: `${community.city} Hub`,
       organizer: "Community Leaders",
+      slug: "january-meetup",
     },
   ]
 
@@ -274,16 +283,13 @@ export default function CityCommunitPage() {
       <Header />
 
       <section className="relative overflow-hidden border-b border-border">
-        {/* Soft gradient background layers */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(120,119,198,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(74,222,128,0.12),transparent_50%)]" />
 
-        {/* Floating decorative elements */}
         <div className="absolute top-20 left-10 w-80 h-80 bg-primary/8 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/8 rounded-full blur-3xl animate-pulse delay-1000" />
 
-        {/* Sophisticated cityscape illustration */}
         <div className="absolute inset-0 overflow-hidden">
           <svg
             className="absolute bottom-0 right-0 w-full h-full opacity-[0.08]"
@@ -291,44 +297,34 @@ export default function CityCommunitPage() {
             fill="none"
             preserveAspectRatio="xMaxYMax meet"
           >
-            {/* Detailed cityscape with buildings */}
             <g className="text-primary">
-              {/* Tall building 1 */}
               <rect x="1200" y="120" width="60" height="280" fill="currentColor" opacity="0.4" />
               <rect x="1205" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
               <rect x="1220" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
               <rect x="1235" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
               <rect x="1250" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
 
-              {/* Building 2 */}
               <rect x="1120" y="180" width="70" height="220" fill="currentColor" opacity="0.35" />
               <rect x="1125" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
               <rect x="1145" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
               <rect x="1165" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
 
-              {/* Building 3 */}
               <rect x="1030" y="150" width="80" height="250" fill="currentColor" opacity="0.4" />
               <circle cx="1070" cy="160" r="8" fill="currentColor" opacity="0.6" />
 
-              {/* Building 4 */}
               <rect x="940" y="200" width="75" height="200" fill="currentColor" opacity="0.3" />
 
-              {/* Building 5 */}
               <rect x="850" y="170" width="80" height="230" fill="currentColor" opacity="0.35" />
               <rect x="860" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
               <rect x="880" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
               <rect x="900" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
 
-              {/* Building 6 */}
               <rect x="760" y="220" width="70" height="180" fill="currentColor" opacity="0.3" />
 
-              {/* Building 7 */}
               <rect x="670" y="190" width="75" height="210" fill="currentColor" opacity="0.35" />
 
-              {/* Building 8 */}
               <rect x="580" y="240" width="70" height="160" fill="currentColor" opacity="0.3" />
 
-              {/* Decorative elements */}
               <circle cx="1100" cy="100" r="3" fill="currentColor" opacity="0.7" />
               <circle cx="950" cy="120" r="2" fill="currentColor" opacity="0.6" />
               <circle cx="800" cy="140" r="2.5" fill="currentColor" opacity="0.6" />
@@ -337,7 +333,6 @@ export default function CityCommunitPage() {
         </div>
 
         <div className="container relative py-12 md:py-16 lg:py-20">
-          {/* Communities badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-sm rounded-md border border-border mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             <span className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
@@ -345,9 +340,7 @@ export default function CityCommunitPage() {
             </span>
           </div>
 
-          {/* Main content */}
           <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 mb-10">
-            {/* Logo */}
             <div className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-3xl overflow-hidden bg-white shadow-2xl flex-shrink-0 ring-4 ring-primary/10">
               <Image
                 src={community.logo_url || "/placeholder.svg"}
@@ -357,7 +350,6 @@ export default function CityCommunitPage() {
               />
             </div>
 
-            {/* City name and community info */}
             <div className="flex-1">
               <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-3 uppercase tracking-tighter leading-none bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
                 {community.city}
@@ -366,7 +358,6 @@ export default function CityCommunitPage() {
             </div>
           </div>
 
-          {/* Social links */}
           {socialLinks.length > 0 && (
             <div className="flex items-center gap-2.5">
               {socialLinks.map((link, index) => {
@@ -418,78 +409,79 @@ export default function CityCommunitPage() {
           <h2 className="text-2xl font-bold mb-6">Past Events</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {pastEvents.map((event, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden transition-all duration-500 hover:scale-[1.03] cursor-pointer"
-                style={{
-                  ["--brand-color" as string]: colors.primary,
-                  ["--brand-light" as string]: colors.light,
-                  ["--brand-glow" as string]: colors.glow,
-                  ["--brand-shadow" as string]: colors.shadow,
-                }}
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              <Link key={index} href={`/clubs/${slug}/${event.slug}`}>
+                <Card
+                  className="group relative overflow-hidden transition-all duration-500 hover:scale-[1.03] cursor-pointer"
                   style={{
-                    background: `linear-gradient(135deg, ${colors.light.replace("0.1", "0.05")}, transparent)`,
+                    ["--brand-color" as string]: colors.primary,
+                    ["--brand-light" as string]: colors.light,
+                    ["--brand-glow" as string]: colors.glow,
+                    ["--brand-shadow" as string]: colors.shadow,
                   }}
-                />
-
-                <div
-                  className="absolute -inset-1 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-xl -z-10"
-                  style={{
-                    background: colors.glow.replace("0.3", "0.15"),
-                  }}
-                />
-
-                <CardContent className="p-5 relative">
-                  <Badge
-                    className="font-medium mb-3 px-2.5 py-0.5 transition-all duration-500 bg-black text-white hover:bg-black/90"
-                    style={{
-                      backgroundColor: "black",
-                    }}
-                  >
-                    <span className="group-hover:hidden">{community.city.toUpperCase()}</span>
-                    <span
-                      className="hidden group-hover:inline"
-                      style={{
-                        color: colors.primary,
-                      }}
-                    >
-                      {community.city.toUpperCase()}
-                    </span>
-                  </Badge>
-
-                  <div className="text-sm text-muted-foreground mb-2 group-hover:font-medium transition-all duration-300">
-                    {event.date}
-                  </div>
-
-                  <h3 className="font-semibold mb-3 leading-tight line-clamp-2 transition-colors duration-500">
-                    <span className="group-hover:hidden">{event.title}</span>
-                    <span className="hidden group-hover:inline" style={{ color: colors.primary }}>
-                      {event.title}
-                    </span>
-                  </h3>
-
-                  <div className="space-y-1.5 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 flex-shrink-0" />
-                      <span className="line-clamp-1">{event.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Building2 className="h-3.5 w-3.5 flex-shrink-0" />
-                      <span className="line-clamp-1">{event.organizer}</span>
-                    </div>
-                  </div>
-
+                >
                   <div
-                    className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{
-                      backgroundColor: colors.primary,
+                      background: `linear-gradient(135deg, ${colors.light.replace("0.1", "0.05")}, transparent)`,
                     }}
                   />
-                </CardContent>
-              </Card>
+
+                  <div
+                    className="absolute -inset-1 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-xl -z-10"
+                    style={{
+                      background: colors.glow.replace("0.3", "0.15"),
+                    }}
+                  />
+
+                  <CardContent className="p-5 relative">
+                    <Badge
+                      className="font-medium mb-3 px-2.5 py-0.5 transition-all duration-500 bg-black text-white hover:bg-black/90"
+                      style={{
+                        backgroundColor: "black",
+                      }}
+                    >
+                      <span className="group-hover:hidden">{community.city.toUpperCase()}</span>
+                      <span
+                        className="hidden group-hover:inline"
+                        style={{
+                          color: colors.primary,
+                        }}
+                      >
+                        {community.city.toUpperCase()}
+                      </span>
+                    </Badge>
+
+                    <div className="text-sm text-muted-foreground mb-2 group-hover:font-medium transition-all duration-300">
+                      {event.date}
+                    </div>
+
+                    <h3 className="font-semibold mb-3 leading-tight line-clamp-2 transition-colors duration-500">
+                      <span className="group-hover:hidden">{event.title}</span>
+                      <span className="hidden group-hover:inline" style={{ color: colors.primary }}>
+                        {event.title}
+                      </span>
+                    </h3>
+
+                    <div className="space-y-1.5 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="h-3.5 w-3.5 flex-shrink-0" />
+                        <span className="line-clamp-1">{event.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Building2 className="h-3.5 w-3.5 flex-shrink-0" />
+                        <span className="line-clamp-1">{event.organizer}</span>
+                      </div>
+                    </div>
+
+                    <div
+                      className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500"
+                      style={{
+                        backgroundColor: colors.primary,
+                      }}
+                    />
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
