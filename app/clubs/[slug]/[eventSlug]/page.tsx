@@ -34,12 +34,12 @@ const eventData = {
   // CSI Events
   "techfest-2024": {
     slug: "techfest-2024",
-    title: "TechFest 2024",
+    title: "CSI Tech Summit 2025",
     description:
       "Annual technical festival featuring workshops, competitions, hackathons, and guest lectures from industry experts. A celebration of technology and innovation.",
-    date: "2024-03-15",
+    date: "2025-11-15",
     time: "9:00 AM - 6:00 PM",
-    location: "Main Campus, Multiple Venues",
+    location: "KKWIEER Campus",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Showcase latest technological innovations and trends",
@@ -84,6 +84,7 @@ const eventData = {
     attended: 268,
     status: "completed",
     clubSlug: "csi",
+    clubName: "Computer Society of India",
     eventReport: {
       highlights: [
         "Successfully organized 15+ technical events and competitions",
@@ -187,12 +188,12 @@ const eventData = {
   // Debuggers Club Events
   "equinox-2024": {
     slug: "equinox-2024",
-    title: "Equinox 2024",
+    title: "Code Debug Marathon",
     description:
       "Debuggers' Club flagship annual technical festival featuring multiple competitions, workshops, and cultural events. A perfect blend of technical excellence and creative expression.",
-    date: "2024-03-25",
+    date: "2025-11-22",
     time: "9:00 AM - 8:00 PM",
-    location: "Main Campus, All Venues",
+    location: "Computer Lab A",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Provide platform for showcasing technical and non-technical talents",
@@ -238,6 +239,7 @@ const eventData = {
     attended: 352,
     status: "completed",
     clubSlug: "debuggers",
+    clubName: "Debuggers' Club",
     eventReport: {
       highlights: [
         "Successfully organized 20+ technical and cultural events",
@@ -341,12 +343,12 @@ const eventData = {
   // More events for other clubs...
   "design-sprint-2024": {
     slug: "design-sprint-2024",
-    title: "Design Sprint 2024",
+    title: "UI/UX Design Workshop",
     description:
       "48-hour intensive design challenge where teams solve real-world problems through design thinking and rapid prototyping.",
-    date: "2024-03-10",
+    date: "2025-11-28",
     time: "9:00 AM (Day 1) - 5:00 PM (Day 2)",
-    location: "Design Studio, Innovation Lab",
+    location: "Design Studio",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Apply design thinking methodology to real problems",
@@ -383,6 +385,7 @@ const eventData = {
     attended: 72,
     status: "completed",
     clubSlug: "desoc",
+    clubName: "DESOC",
     eventReport: {
       highlights: [
         "18 teams created innovative design solutions",
@@ -467,12 +470,12 @@ const eventData = {
   // Phoenix Club Events
   "phoenix-codefest-2024": {
     slug: "phoenix-codefest-2024",
-    title: "Phoenix CodeFest 2024",
+    title: "AI & Data Science Symposium",
     description:
       "Annual coding competition hosted by the Phoenix Club, focusing on algorithmic challenges and problem-solving.",
-    date: "2024-04-05",
+    date: "2025-12-05",
     time: "10:00 AM - 4:00 PM",
-    location: "Computer Lab 3, Tech Block",
+    location: "Auditorium",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Enhance algorithmic thinking and problem-solving skills",
@@ -508,6 +511,7 @@ const eventData = {
     attended: 128,
     status: "completed",
     clubSlug: "phoenix",
+    clubName: "Phoenix Club (AIDS)",
     eventReport: {
       highlights: [
         "Conducted two challenging rounds of algorithmic problems",
@@ -582,12 +586,12 @@ const eventData = {
   // MIBCS Club Events
   "data-science-summit-2024": {
     slug: "data-science-summit-2024",
-    title: "Data Science Summit 2024",
+    title: "Blockchain & Security Hackathon",
     description:
       "An event dedicated to exploring the latest trends, tools, and applications in Data Science and Artificial Intelligence.",
-    date: "2024-04-15",
+    date: "2025-12-12",
     time: "9:30 AM - 5:00 PM",
-    location: "Auditorium, Innovation Hub",
+    location: "Innovation Lab",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Educate on the impact of Data Science and AI",
@@ -632,6 +636,7 @@ const eventData = {
     attended: 185,
     status: "completed",
     clubSlug: "mibcs",
+    clubName: "ML, IoT, Blockchain & CyberSec",
     eventReport: {
       highlights: [
         "Insightful keynote on the future of AI",
@@ -755,6 +760,7 @@ const eventData = {
     attended: 90,
     status: "completed",
     clubSlug: "mesa",
+    clubName: "MESA",
     eventReport: {
       highlights: [
         "15 teams participated with their custom-built robots",
@@ -829,12 +835,12 @@ const eventData = {
   // FOSS Club Events
   "foss-meetup-2024": {
     slug: "foss-meetup-2024",
-    title: "FOSS Meetup 2024",
+    title: "Open Source Contribution Drive",
     description:
       "A gathering for enthusiasts of Free and Open Source Software to discuss, share, and learn about FOSS technologies.",
-    date: "2024-05-10",
+    date: "2025-12-18",
     time: "2:00 PM - 5:00 PM",
-    location: "Seminar Hall B, Main Building",
+    location: "Tech Hub",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Promote FOSS culture and adoption",
@@ -878,6 +884,7 @@ const eventData = {
     attended: 105,
     status: "completed",
     clubSlug: "foss",
+    clubName: "FOSS KKWIEER",
     eventReport: {
       highlights: [
         "Engaging talks on Linux and open-source contribution",
@@ -1002,6 +1009,7 @@ const eventData = {
     attended: 135,
     status: "completed",
     clubSlug: "iste",
+    clubName: "ISTE",
     eventReport: {
       highlights: [
         "Insightful discussions on the future of educational technology",
@@ -1077,12 +1085,12 @@ const eventData = {
   // Placeholder event from original code
   c2c: {
     slug: "c2c",
-    title: "Campus to Corporate Workshop",
+    title: "CSI Monthly Meetup - January",
     description:
       "A comprehensive workshop designed to bridge the gap between campus life and corporate expectations. Learn essential skills, industry insights, and professional etiquette.",
-    date: "2024-11-15",
+    date: "2026-01-10",
     time: "10:00 AM - 5:00 PM",
-    location: "Seminar Hall A, Main Building",
+    location: "Seminar Hall",
     banner: "/placeholder.svg?height=400&width=1200",
     objectives: [
       "Understand corporate culture and expectations",
@@ -1129,6 +1137,7 @@ const eventData = {
     attended: 82,
     status: "completed",
     clubSlug: "csi",
+    clubName: "Computer Society of India",
     // Past event report data
     eventReport: {
       highlights: [
@@ -1264,14 +1273,14 @@ export default function EventPage({ params }: { params: { slug: string; eventSlu
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Club
+              Back to {event.clubName || "Club"}
             </Link>
           </div>
 
           <div className="max-w-4xl">
             <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm border border-primary/20">
               <Calendar className="h-3 w-3" />
-              {isUpcoming ? "UPCOMING EVENT" : isCompleted ? "PAST EVENT" : "ONGOING EVENT"}
+              {event.clubName} • {isUpcoming ? "UPCOMING EVENT" : isCompleted ? "PAST EVENT" : "ONGOING EVENT"}
             </div>
 
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-balance">
@@ -1518,7 +1527,10 @@ export default function EventPage({ params }: { params: { slug: string; eventSlu
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                     <BarChart3 className="h-6 w-6 text-primary" />
                   </div>
-                  <h2 className="text-3xl font-bold">Executive Summary</h2>
+                  <div>
+                    <h2 className="text-3xl font-bold">{event.title} - Event Report</h2>
+                    <p className="text-sm text-muted-foreground">Organized by {event.clubName}</p>
+                  </div>
                 </div>
 
                 {/* Impact Metrics Grid */}
