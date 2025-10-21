@@ -7,6 +7,7 @@ import "./globals.css"
 import { Suspense } from "react"
 import { AuthProvider } from "@/contexts/auth-context"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "ClubConn - Your Campus Connection Hub",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <AuthProvider>
           <Header />
           <Suspense fallback={null}>{children}</Suspense>
+          <Footer />
         </AuthProvider>
         <Analytics />
       </body>
