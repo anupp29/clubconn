@@ -15,7 +15,7 @@ export function Hero() {
             <stop offset="100%" stopColor="rgba(0,0,0,0.15)" />
           </linearGradient>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="url(#gridGradient)" strokeWidth="3" />
+            <rect width="40" height="40" fill="none" stroke="url(#gridGradient)" strokeWidth="3" />
             <circle cx="0" cy="0" r="2" fill="url(#gridGradient)" />
           </pattern>
         </defs>
