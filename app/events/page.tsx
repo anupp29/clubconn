@@ -1,7 +1,8 @@
+import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, Users, Code, Rocket, Network, Globe, Sparkles } from "lucide-react"
+import { Calendar, MapPin, Users, Code, Cpu, Palette, Rocket, Network, Globe, Sparkles } from "lucide-react"
 import Link from "next/link"
 
 export default function EventsPage() {
@@ -41,6 +42,7 @@ export default function EventsPage() {
       location: "KKWIEER Campus",
       attendees: 250,
       badge: "Must Attend",
+      color: "from-blue-500 to-cyan-500",
       link: "/clubs/csi/techfest-2024",
     },
     {
@@ -51,6 +53,7 @@ export default function EventsPage() {
       location: "Computer Lab A",
       attendees: 120,
       badge: null,
+      color: "from-purple-500 to-pink-500",
       link: "/clubs/debuggers/equinox-2024",
     },
     {
@@ -61,6 +64,7 @@ export default function EventsPage() {
       location: "Design Studio",
       attendees: 80,
       badge: "Must Attend",
+      color: "from-orange-500 to-red-500",
       link: "/clubs/desoc/design-sprint-2024",
     },
     {
@@ -71,6 +75,7 @@ export default function EventsPage() {
       location: "Auditorium",
       attendees: 300,
       badge: "Featured",
+      color: "from-emerald-500 to-teal-500",
       link: "/clubs/phoenix/phoenix-codefest-2024",
     },
     {
@@ -81,6 +86,7 @@ export default function EventsPage() {
       location: "Innovation Lab",
       attendees: 150,
       badge: "Must Attend",
+      color: "from-violet-500 to-purple-500",
       link: "/clubs/mibcs/data-science-summit-2024",
     },
     {
@@ -91,6 +97,7 @@ export default function EventsPage() {
       location: "Tech Hub",
       attendees: 200,
       badge: "Featured",
+      color: "from-green-500 to-emerald-500",
       link: "/clubs/foss/foss-meetup-2024",
     },
     {
@@ -101,6 +108,7 @@ export default function EventsPage() {
       location: "Seminar Hall",
       attendees: 100,
       badge: null,
+      color: "from-blue-500 to-cyan-500",
       link: "/clubs/csi/c2c",
     },
     {
@@ -111,9 +119,19 @@ export default function EventsPage() {
       location: "Creative Space",
       attendees: 60,
       badge: "Featured",
+      color: "from-orange-500 to-red-500",
       link: "/clubs/desoc/design-sprint-2024",
     },
   ]
+
+  const clubIcons: Record<string, any> = {
+    CSI: Code,
+    DEBUGGERS: Cpu,
+    DESOC: Palette,
+    PHOENIX: Rocket,
+    MIBCS: Network,
+    FOSS: Globe,
+  }
 
   return (
     <main className="min-h-screen bg-background">
@@ -272,6 +290,8 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   )
 }
