@@ -196,20 +196,20 @@ Before you begin, ensure you have the following installed:
 
 ### Installation
 
-1. **Clone the repository**
+#### 1. Clone the repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/your-username/clubconn.git
 cd clubconn
-\`\`\`
+```
 
-2. **Install dependencies**
+#### 2. Install dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
-3. **Set up Firebase**
+#### 3. Set up Firebase
 
 Follow the detailed instructions in [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) to:
 - Create a Firebase project
@@ -218,11 +218,11 @@ Follow the detailed instructions in [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) to:
 - Configure security rules
 - Get your Firebase configuration
 
-4. **Configure Firebase in the project**
+#### 4. Configure Firebase in the project
 
 The Firebase configuration is already set up in `lib/firebase.ts`. If you need to use your own Firebase project, update the configuration:
 
-\`\`\`typescript
+```typescript
 // lib/firebase.ts
 const firebaseConfig = {
   apiKey: "your-api-key",
@@ -232,15 +232,15 @@ const firebaseConfig = {
   messagingSenderId: "your-sender-id",
   appId: "your-app-id"
 };
-\`\`\`
+```
 
-5. **Run the development server**
+#### 5. Run the development server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
-6. **Open your browser**
+#### 6. Open your browser
 
 Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
@@ -248,7 +248,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to see the applicatio
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 clubconn/
 ├── app/                          # Next.js App Router
 │   ├── (auth)/                   # Auth-related routes
@@ -316,7 +316,7 @@ clubconn/
 ├── package.json                  # Dependencies
 ├── tsconfig.json                 # TypeScript config
 └── next.config.mjs               # Next.js config
-\`\`\`
+```
 
 ---
 
@@ -328,7 +328,7 @@ ClubConn uses Vercel's built-in integrations for most services. However, if you'
 
 Create a `.env.local` file in the root directory (this file is gitignored):
 
-\`\`\`env
+```env
 # Firebase Configuration (if using custom project)
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -339,7 +339,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 # Vercel Blob (automatically configured on Vercel)
 BLOB_READ_WRITE_TOKEN=your_blob_token
-\`\`\`
+```
 
 ### Vercel Integration
 
@@ -353,7 +353,7 @@ When deploying to Vercel, the following integrations are automatically configure
 
 ### Available Scripts
 
-\`\`\`bash
+```bash
 # Start development server
 npm run dev
 
@@ -365,29 +365,29 @@ npm start
 
 # Run linter
 npm run lint
-\`\`\`
+```
 
 ### Development Workflow
 
-1. **Create a new branch** for your feature
-   \`\`\`bash
-   git checkout -b feature/your-feature-name
-   \`\`\`
+#### 1. Create a new branch for your feature
+```bash
+git checkout -b feature/your-feature-name
+```
 
-2. **Make your changes** and test locally
+#### 2. Make your changes and test locally
 
-3. **Commit your changes**
-   \`\`\`bash
-   git add .
-   git commit -m "Add your feature description"
-   \`\`\`
+#### 3. Commit your changes
+```bash
+git add .
+git commit -m "Add your feature description"
+```
 
-4. **Push to your branch**
-   \`\`\`bash
-   git push origin feature/your-feature-name
-   \`\`\`
+#### 4. Push to your branch
+```bash
+git push origin feature/your-feature-name
+```
 
-5. **Create a Pull Request** on GitHub
+#### 5. Create a Pull Request on GitHub
 
 ### Code Style Guidelines
 
@@ -404,31 +404,31 @@ npm run lint
 
 ### Deploy to Vercel (Recommended)
 
-1. **Push your code to GitHub**
+#### 1. Push your code to GitHub
 
-2. **Import project in Vercel**
-   - Go to [vercel.com](https://vercel.com/)
-   - Click "New Project"
-   - Import your GitHub repository
+#### 2. Import project in Vercel
+- Go to [vercel.com](https://vercel.com/)
+- Click "New Project"
+- Import your GitHub repository
 
-3. **Configure project**
-   - Vercel will automatically detect Next.js
-   - Add environment variables if needed
-   - Click "Deploy"
+#### 3. Configure project
+- Vercel will automatically detect Next.js
+- Add environment variables if needed
+- Click "Deploy"
 
-4. **Set up integrations**
-   - Add Vercel Blob integration
-   - Enable Vercel Analytics
+#### 4. Set up integrations
+- Add Vercel Blob integration
+- Enable Vercel Analytics
 
 ### Manual Deployment
 
-\`\`\`bash
+```bash
 # Build the project
 npm run build
 
 # The output will be in the .next folder
 # Deploy this folder to your hosting provider
-\`\`\`
+```
 
 ---
 
