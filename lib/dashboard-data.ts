@@ -305,7 +305,6 @@ export async function getRecentActivity(
   }>
 > {
   try {
-    // Mock data for demonstration - replace with real data from Firestore
     const mockActivities = [
       {
         type: "event" as const,
@@ -397,27 +396,26 @@ export async function getAIRecommendations(userId: string): Promise<{
   events: Array<{ id: string; title: string; club: string; date: string; match: number; color: string }>
 }> {
   try {
-    // Mock recommendations based on user interests
     const mockRecommendations = {
       clubs: [
         {
           id: "foss",
           name: "FOSS KKWIEER",
-          reason: "Based on your interest in open source and collaborative coding",
+          reason: "Based on your interest in open source collaboration and community-driven development",
           match: 95,
           color: "from-green-500 to-emerald-500",
         },
         {
           id: "mibcs",
           name: "ML, IoT, Blockchain & CyberSec",
-          reason: "Matches your profile in emerging technologies and security",
+          reason: "Perfect match for your passion in emerging technologies and cybersecurity",
           match: 88,
           color: "from-violet-500 to-purple-500",
         },
         {
           id: "desoc",
           name: "Design & CS Society",
-          reason: "Perfect for expanding your UI/UX and design skills",
+          reason: "Ideal for expanding your creative skills in UI/UX and design thinking",
           match: 82,
           color: "from-orange-500 to-red-500",
         },

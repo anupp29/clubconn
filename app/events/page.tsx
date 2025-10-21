@@ -22,32 +22,32 @@ const EVENT_COLORS = {
   CSI: {
     primary: "rgb(59, 130, 246)", // Blue
     light: "rgba(59, 130, 246, 0.1)",
-    glow: "rgba(59, 130, 246, 0.3)",
+    glow: "rgba(59, 130, 246, 0.15)",
   },
   DEBUGGERS: {
     primary: "rgb(168, 85, 247)", // Purple
     light: "rgba(168, 85, 247, 0.1)",
-    glow: "rgba(168, 85, 247, 0.3)",
+    glow: "rgba(168, 85, 247, 0.15)",
   },
   DESOC: {
     primary: "rgb(249, 115, 22)", // Orange
     light: "rgba(249, 115, 22, 0.1)",
-    glow: "rgba(249, 115, 22, 0.3)",
+    glow: "rgba(249, 115, 22, 0.15)",
   },
   PHOENIX: {
     primary: "rgb(16, 185, 129)", // Emerald
     light: "rgba(16, 185, 129, 0.1)",
-    glow: "rgba(16, 185, 129, 0.3)",
+    glow: "rgba(16, 185, 129, 0.15)",
   },
   MIBCS: {
     primary: "rgb(139, 92, 246)", // Violet
     light: "rgba(139, 92, 246, 0.1)",
-    glow: "rgba(139, 92, 246, 0.3)",
+    glow: "rgba(139, 92, 246, 0.15)",
   },
   FOSS: {
     primary: "rgb(34, 197, 94)", // Green
     light: "rgba(34, 197, 94, 0.1)",
-    glow: "rgba(34, 197, 94, 0.3)",
+    glow: "rgba(34, 197, 94, 0.15)",
   },
 }
 
@@ -191,12 +191,13 @@ export default function EventsPage() {
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/3 via-background to-emerald-500/5" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.06),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.04),transparent_50%)]" />
 
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/4 rounded-full blur-3xl" />
+        {/* </CHANGE> */}
 
         <div className="container relative py-20 md:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -292,10 +293,11 @@ export default function EventsPage() {
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                       style={{
-                        background: `linear-gradient(135deg, ${colors.glow}, transparent, ${colors.glow})`,
-                        filter: "blur(20px)",
+                        background: `radial-gradient(circle at center, ${colors.glow}, transparent 70%)`,
+                        filter: "blur(40px)",
                       }}
                     />
+                    {/* </CHANGE> */}
 
                     <div
                       className="h-1 w-full transition-all duration-500"
@@ -306,11 +308,6 @@ export default function EventsPage() {
                     />
 
                     <CardContent className="p-6 relative">
-                      <div
-                        className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
-                        style={{ backgroundColor: colors.glow }}
-                      />
-
                       <div className="space-y-4 relative">
                         <div className="flex items-start justify-between">
                           <div className="space-y-1">
