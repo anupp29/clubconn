@@ -9,9 +9,14 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-emerald-50/30 py-16 sm:py-20 md:py-24 lg:py-32">
       <svg className="absolute inset-0 -z-10 h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
+          <linearGradient id="gridGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="rgba(0,0,0,0.35)" />
+            <stop offset="50%" stopColor="rgba(0,0,0,0.25)" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.15)" />
+          </linearGradient>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="2" />
-            <circle cx="0" cy="0" r="1.5" fill="rgba(0,0,0,0.2)" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="url(#gridGradient)" strokeWidth="3" />
+            <circle cx="0" cy="0" r="2" fill="url(#gridGradient)" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
