@@ -19,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu"
+import Image from "next/image"
 
 export function Header() {
   const { user, userProfile, signOut, loading, profileChecked } = useAuth()
@@ -64,9 +65,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CC</span>
-            </div>
+            <Image src="/clubconn-logo.png" alt="ClubConn Logo" width={32} height={32} className="h-8 w-8" />
             <span className="font-bold text-xl">ClubConn</span>
           </Link>
 
