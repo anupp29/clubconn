@@ -305,9 +305,46 @@ export async function getRecentActivity(
   }>
 > {
   try {
-    // This would typically aggregate from multiple collections
-    // For now, return empty array - implement based on your activity tracking
-    return []
+    // Mock data for demonstration - replace with real data from Firestore
+    const mockActivities = [
+      {
+        type: "event" as const,
+        title: "Attended CSI Tech Summit 2025",
+        club: "Computer Society of India",
+        date: "2 days ago",
+        xp: 50,
+      },
+      {
+        type: "badge" as const,
+        title: "Earned 'Event Enthusiast' Badge",
+        club: "ClubConn Platform",
+        date: "3 days ago",
+        xp: 100,
+      },
+      {
+        type: "certificate" as const,
+        title: "Completed UI/UX Design Workshop",
+        club: "Design & CS Society",
+        date: "1 week ago",
+        xp: 75,
+      },
+      {
+        type: "club" as const,
+        title: "Joined Phoenix Club (AIDS)",
+        club: "Phoenix Club",
+        date: "2 weeks ago",
+        xp: 25,
+      },
+      {
+        type: "event" as const,
+        title: "Participated in Code Debug Marathon",
+        club: "Debuggers' Club",
+        date: "3 weeks ago",
+        xp: 50,
+      },
+    ]
+
+    return mockActivities.slice(0, limitCount)
   } catch (error) {
     console.error("[v0] Error fetching recent activity:", error)
     return []
@@ -360,12 +397,60 @@ export async function getAIRecommendations(userId: string): Promise<{
   events: Array<{ id: string; title: string; club: string; date: string; match: number; color: string }>
 }> {
   try {
-    // Placeholder implementation
-    // In production, this would use ML algorithms based on user behavior
-    return {
-      clubs: [],
-      events: [],
+    // Mock recommendations based on user interests
+    const mockRecommendations = {
+      clubs: [
+        {
+          id: "foss",
+          name: "FOSS KKWIEER",
+          reason: "Based on your interest in open source and collaborative coding",
+          match: 95,
+          color: "from-green-500 to-emerald-500",
+        },
+        {
+          id: "mibcs",
+          name: "ML, IoT, Blockchain & CyberSec",
+          reason: "Matches your profile in emerging technologies and security",
+          match: 88,
+          color: "from-violet-500 to-purple-500",
+        },
+        {
+          id: "desoc",
+          name: "Design & CS Society",
+          reason: "Perfect for expanding your UI/UX and design skills",
+          match: 82,
+          color: "from-orange-500 to-red-500",
+        },
+      ],
+      events: [
+        {
+          id: "blockchain-hackathon",
+          title: "Blockchain & Security Hackathon",
+          club: "MIBCS",
+          date: "12 Dec 2025",
+          match: 92,
+          color: "from-violet-500 to-purple-500",
+        },
+        {
+          id: "foss-contribution",
+          title: "Open Source Contribution Drive",
+          club: "FOSS KKWIEER",
+          date: "18 Dec 2025",
+          match: 89,
+          color: "from-green-500 to-emerald-500",
+        },
+        {
+          id: "design-bootcamp",
+          title: "Design Thinking Bootcamp",
+          club: "DESOC",
+          date: "17 Jan 2026",
+          match: 85,
+          color: "from-orange-500 to-red-500",
+        },
+      ],
     }
+
+    return mockRecommendations
   } catch (error) {
     console.error("[v0] Error getting AI recommendations:", error)
     return { clubs: [], events: [] }
