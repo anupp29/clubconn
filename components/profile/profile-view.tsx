@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Github, Linkedin, Twitter, Globe, Edit, Lock } from "lucide-react"
+import { Github, Linkedin, Twitter, Globe, Edit, Lock, Mail, Award, Users } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { LoginDialog } from "../auth/login-dialog"
@@ -23,8 +23,6 @@ export function ProfileView({ profile }: ProfileViewProps) {
 
   const isOwner = user?.uid === profile.uid
   const isLoggedIn = !!user
-
-  console.log("[v0] Rendering profile view for:", profile.username, "isOwner:", isOwner, "isLoggedIn:", isLoggedIn)
 
   const getInitials = (name: string) => {
     return name
@@ -64,72 +62,116 @@ export function ProfileView({ profile }: ProfileViewProps) {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        <div className="container py-8 md:py-12">
-          {/* Profile Header */}
-          <Card className="mb-8">
-            <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <Avatar className="h-24 w-24 md:h-32 md:w-32">
-                  <AvatarImage src={profile.profileImage || "/placeholder.svg"} alt={profile.displayName} />
-                  <AvatarFallback className="text-2xl">{getInitials(profile.displayName)}</AvatarFallback>
-                </Avatar>
+      <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
+        <div className="relative overflow-hidden border-b bg-gradient-to-br from-primary/5 via-background to-background">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
 
-                <div className="flex-1 space-y-4">
-                  <div>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
-                      <h1 className="text-3xl font-bold">{profile.displayName}</h1>
-                      {isOwner && (
-                        <Button size="sm" variant="outline" asChild>
-                          <Link href={`/u/${profile.username}/edit`}>
-                            <Edit className="h-4 w-4 mr-2" />
-                            Edit Profile
-                          </Link>
-                        </Button>
+          <div className="container relative py-12 md:py-16">
+            <Card className="border-primary/20 shadow-xl">
+              <CardContent className="pt-8">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  <div className="relative">
+                    <Avatar className="h-32 w-32 md:h-40 md:w-40 border-4 border-primary/20 shadow-2xl">
+                      <AvatarImage src={profile.profileImage || "/placeholder.svg"} alt={profile.displayName} />
+                      <AvatarFallback className="text-4xl font-bold bg-gradient-to-br from-primary to-primary/70 text-primary-foreground">
+                        {getInitials(profile.displayName)}
+                      </AvatarFallback>
+                    </Avatar>
+                    {isOwner && (
+                      <div className="absolute -bottom-2 -right-2">
+                        <Badge className="bg-primary shadow-lg">You</Badge>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex-1 space-y-6">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-3">
+                        <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                          {profile.displayName}
+                        </h1>
+                        {isOwner && (
+                          <Button size="sm" variant="outline" className="w-fit bg-transparent" asChild>
+                            <Link href={`/u/${profile.username}/edit`}>
+                              <Edit className="h-4 w-4 mr-2" />
+                              Edit Profile
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
+                      <p className="text-xl text-muted-foreground font-medium">@{profile.username}</p>
+                    </div>
+
+                    {profile.bio && (
+                      <p className="text-lg leading-relaxed text-muted-foreground max-w-2xl">{profile.bio}</p>
+                    )}
+
+                    {socialLinks.length > 0 && (
+                      <div className="flex flex-wrap gap-3">
+                        {socialLinks.map((link) => (
+                          <Button
+                            key={link.name}
+                            variant="outline"
+                            size="sm"
+                            className="hover:scale-105 transition-transform bg-transparent"
+                            asChild
+                          >
+                            <a href={link.url} target="_blank" rel="noopener noreferrer">
+                              <link.icon className={`h-4 w-4 mr-2 ${link.color}`} />
+                              {link.name}
+                            </a>
+                          </Button>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-6 pt-4 border-t">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Users className="h-4 w-4 text-primary" />
+                        <span className="font-semibold">{profile.joinedClubs?.length || 0}</span>
+                        <span className="text-muted-foreground">Clubs</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Award className="h-4 w-4 text-primary" />
+                        <span className="font-semibold">{profile.achievements?.length || 0}</span>
+                        <span className="text-muted-foreground">Achievements</span>
+                      </div>
+                      {profile.email && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Mail className="h-4 w-4 text-primary" />
+                          <span className="text-muted-foreground">{profile.email}</span>
+                        </div>
                       )}
                     </div>
-                    <p className="text-muted-foreground">@{profile.username}</p>
                   </div>
-
-                  {profile.bio && <p className="text-lg leading-relaxed">{profile.bio}</p>}
-
-                  {/* Social Links */}
-                  {socialLinks.length > 0 && (
-                    <div className="flex flex-wrap gap-3">
-                      {socialLinks.map((link) => (
-                        <Button key={link.name} variant="outline" size="sm" asChild>
-                          <a href={link.url} target="_blank" rel="noopener noreferrer">
-                            <link.icon className={`h-4 w-4 mr-2 ${link.color}`} />
-                            {link.name}
-                          </a>
-                        </Button>
-                      ))}
-                    </div>
-                  )}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
+        <div className="container py-8 md:py-12">
           {/* Login Gate for Non-Logged-In Users */}
           {!isLoggedIn && (
-            <Card className="mb-8 border-primary/50 bg-primary/5">
+            <Card className="mb-8 border-primary/50 bg-primary/5 shadow-lg">
               <CardContent className="pt-6">
                 <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <Lock className="h-6 w-6 text-primary" />
+                  <div className="rounded-full bg-primary/10 p-4">
+                    <Lock className="h-8 w-8 text-primary" />
                   </div>
                   <div className="flex-1 text-center sm:text-left">
-                    <h3 className="font-semibold mb-1">Sign in to see more</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="text-xl font-bold mb-2">Sign in to see more</h3>
+                    <p className="text-muted-foreground">
                       Join ClubConn to view {profile.displayName}'s full profile, achievements, and club memberships
                     </p>
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" onClick={() => setLoginOpen(true)}>
+                  <div className="flex gap-3">
+                    <Button variant="outline" size="lg" onClick={() => setLoginOpen(true)}>
                       Sign In
                     </Button>
-                    <Button onClick={() => setSignupOpen(true)}>Sign Up</Button>
+                    <Button size="lg" onClick={() => setSignupOpen(true)}>
+                      Sign Up
+                    </Button>
                   </div>
                 </div>
               </CardContent>
@@ -139,45 +181,62 @@ export function ProfileView({ profile }: ProfileViewProps) {
           {/* Content Grid - Only show if logged in */}
           {isLoggedIn && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Achievements */}
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle>Achievements</CardTitle>
+                  <div className="flex items-center gap-2">
+                    <Award className="h-5 w-5 text-primary" />
+                    <CardTitle>Achievements</CardTitle>
+                  </div>
                   <CardDescription>Milestones and accomplishments</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {profile.achievements && profile.achievements.length > 0 ? (
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {profile.achievements.map((achievement, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-primary mt-1">•</span>
-                          <span className="leading-relaxed">{achievement}</span>
+                        <li
+                          key={index}
+                          className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                        >
+                          <span className="text-primary mt-1 text-lg">✓</span>
+                          <span className="leading-relaxed flex-1">{achievement}</span>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-muted-foreground text-sm">No achievements added yet</p>
+                    <div className="text-center py-8">
+                      <Award className="h-12 w-12 text-muted-foreground/50 mx-auto mb-3" />
+                      <p className="text-muted-foreground">No achievements added yet</p>
+                    </div>
                   )}
                 </CardContent>
               </Card>
 
-              {/* Joined Clubs */}
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle>Joined Clubs</CardTitle>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-primary" />
+                    <CardTitle>Joined Clubs</CardTitle>
+                  </div>
                   <CardDescription>Active club memberships</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {profile.joinedClubs && profile.joinedClubs.length > 0 ? (
                     <div className="flex flex-wrap gap-2">
                       {profile.joinedClubs.map((club, index) => (
-                        <Badge key={index} variant="secondary">
+                        <Badge
+                          key={index}
+                          variant="secondary"
+                          className="px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                        >
                           {club}
                         </Badge>
                       ))}
                     </div>
                   ) : (
-                    <p className="text-muted-foreground text-sm">Not a member of any clubs yet</p>
+                    <div className="text-center py-8">
+                      <Users className="h-12 w-12 text-muted-foreground/50 mx-auto mb-3" />
+                      <p className="text-muted-foreground">Not a member of any clubs yet</p>
+                    </div>
                   )}
                 </CardContent>
               </Card>
@@ -187,7 +246,7 @@ export function ProfileView({ profile }: ProfileViewProps) {
           {/* Blurred Preview for Non-Logged-In Users */}
           {!isLoggedIn && (
             <div className="relative">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 blur-sm pointer-events-none select-none">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 blur-md pointer-events-none select-none opacity-50">
                 <Card>
                   <CardHeader>
                     <CardTitle>Achievements</CardTitle>
@@ -221,16 +280,20 @@ export function ProfileView({ profile }: ProfileViewProps) {
                 </Card>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Card className="max-w-md">
-                  <CardContent className="pt-6 text-center">
-                    <Lock className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Sign in to unlock</h3>
-                    <p className="text-muted-foreground mb-4">Create an account or sign in to view the full profile</p>
-                    <div className="flex gap-2 justify-center">
-                      <Button variant="outline" onClick={() => setLoginOpen(true)}>
+                <Card className="max-w-md shadow-2xl border-primary/50">
+                  <CardContent className="pt-8 pb-8 text-center">
+                    <div className="rounded-full bg-primary/10 p-4 w-fit mx-auto mb-4">
+                      <Lock className="h-12 w-12 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">Sign in to unlock</h3>
+                    <p className="text-muted-foreground mb-6">Create an account or sign in to view the full profile</p>
+                    <div className="flex gap-3 justify-center">
+                      <Button variant="outline" size="lg" onClick={() => setLoginOpen(true)}>
                         Sign In
                       </Button>
-                      <Button onClick={() => setSignupOpen(true)}>Sign Up</Button>
+                      <Button size="lg" onClick={() => setSignupOpen(true)}>
+                        Sign Up
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>

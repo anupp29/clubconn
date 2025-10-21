@@ -184,7 +184,6 @@ export default function CityCommunitPage() {
   if (!community) {
     return (
       <main className="min-h-screen bg-background">
-        <Header />
         <div className="container py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Community Not Found</h1>
           <p className="text-muted-foreground mb-8">The community you're looking for doesn't exist.</p>
@@ -284,50 +283,21 @@ export default function CityCommunitPage() {
 
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(120,119,198,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(74,222,128,0.12),transparent_50%)]" />
-
-        <div className="absolute top-20 left-10 w-80 h-80 bg-primary/8 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/8 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-20 left-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
 
         <div className="absolute inset-0 overflow-hidden">
           <svg
-            className="absolute bottom-0 right-0 w-full h-full opacity-[0.08]"
+            className="absolute bottom-0 right-0 w-full h-full opacity-[0.05]"
             viewBox="0 0 1440 400"
             fill="none"
             preserveAspectRatio="xMaxYMax meet"
           >
             <g className="text-primary">
               <rect x="1200" y="120" width="60" height="280" fill="currentColor" opacity="0.4" />
-              <rect x="1205" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
-              <rect x="1220" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
-              <rect x="1235" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
-              <rect x="1250" y="125" width="10" height="10" fill="currentColor" opacity="0.6" />
-
               <rect x="1120" y="180" width="70" height="220" fill="currentColor" opacity="0.35" />
-              <rect x="1125" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
-              <rect x="1145" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
-              <rect x="1165" y="185" width="12" height="12" fill="currentColor" opacity="0.5" />
-
               <rect x="1030" y="150" width="80" height="250" fill="currentColor" opacity="0.4" />
-              <circle cx="1070" cy="160" r="8" fill="currentColor" opacity="0.6" />
-
               <rect x="940" y="200" width="75" height="200" fill="currentColor" opacity="0.3" />
-
               <rect x="850" y="170" width="80" height="230" fill="currentColor" opacity="0.35" />
-              <rect x="860" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
-              <rect x="880" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
-              <rect x="900" y="180" width="15" height="15" fill="currentColor" opacity="0.5" />
-
-              <rect x="760" y="220" width="70" height="180" fill="currentColor" opacity="0.3" />
-
-              <rect x="670" y="190" width="75" height="210" fill="currentColor" opacity="0.35" />
-
-              <rect x="580" y="240" width="70" height="160" fill="currentColor" opacity="0.3" />
-
-              <circle cx="1100" cy="100" r="3" fill="currentColor" opacity="0.7" />
-              <circle cx="950" cy="120" r="2" fill="currentColor" opacity="0.6" />
-              <circle cx="800" cy="140" r="2.5" fill="currentColor" opacity="0.6" />
             </g>
           </svg>
         </div>
