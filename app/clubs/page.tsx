@@ -1,5 +1,10 @@
+"use client"
+import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 import {
   Code2,
   Users,
@@ -8,10 +13,53 @@ import {
   Linkedin,
   Instagram,
   Calendar,
-  UserCircle,
   Award,
   Sparkles,
+  ExternalLink,
 } from "lucide-react"
+
+const CLUB_COLORS = {
+  csi: {
+    primary: "rgb(59, 130, 246)", // Blue
+    light: "rgba(59, 130, 246, 0.1)",
+    glow: "rgba(59, 130, 246, 0.3)",
+  },
+  debuggers: {
+    primary: "rgb(168, 85, 247)", // Purple
+    light: "rgba(168, 85, 247, 0.1)",
+    glow: "rgba(168, 85, 247, 0.3)",
+  },
+  desoc: {
+    primary: "rgb(249, 115, 22)", // Orange
+    light: "rgba(249, 115, 22, 0.1)",
+    glow: "rgba(249, 115, 22, 0.3)",
+  },
+  phoenix: {
+    primary: "rgb(16, 185, 129)", // Emerald
+    light: "rgba(16, 185, 129, 0.1)",
+    glow: "rgba(16, 185, 129, 0.3)",
+  },
+  mibcs: {
+    primary: "rgb(139, 92, 246)", // Violet
+    light: "rgba(139, 92, 246, 0.1)",
+    glow: "rgba(139, 92, 246, 0.3)",
+  },
+  mesa: {
+    primary: "rgb(234, 88, 12)", // Orange-red
+    light: "rgba(234, 88, 12, 0.1)",
+    glow: "rgba(234, 88, 12, 0.3)",
+  },
+  foss: {
+    primary: "rgb(34, 197, 94)", // Green
+    light: "rgba(34, 197, 94, 0.1)",
+    glow: "rgba(34, 197, 94, 0.3)",
+  },
+  iste: {
+    primary: "rgb(236, 72, 153)", // Pink
+    light: "rgba(236, 72, 153, 0.1)",
+    glow: "rgba(236, 72, 153, 0.3)",
+  },
+}
 
 const clubs = [
   {
@@ -212,21 +260,23 @@ export default function ClubsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border bg-background">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.1),transparent_50%)]" />
 
-        <div className="container py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        <div className="container relative py-20 md:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm font-medium">
-                <Sparkles className="h-4 w-4 text-emerald-600" />
-                <span className="text-foreground">8 Active Student Clubs</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-4 py-1.5 text-sm">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <span className="text-muted-foreground">8 Active Student Clubs</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-tight">
-                KKWIEER Student <span className="text-emerald-600">Clubs</span>
-              </h1>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-balance">Student Clubs</h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                 Join our vibrant community of student clubs promoting innovation, collaboration, and technical
@@ -234,7 +284,7 @@ export default function ClubsPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
-                <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
+                <Button size="lg" className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow" asChild>
                   <Link href="/events">
                     <Calendar className="mr-2 h-5 w-5" />
                     Upcoming Events
@@ -250,14 +300,16 @@ export default function ClubsPage() {
             </div>
 
             <div className="relative hidden lg:block">
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl blur-3xl animate-pulse" />
+              <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-2xl">
                 <div className="grid grid-cols-3 gap-4">
                   {[Code2, Users, Trophy, Calendar, Award, Sparkles].map((Icon, i) => (
                     <div
                       key={i}
-                      className="aspect-square rounded-xl bg-emerald-500/10 flex items-center justify-center hover:bg-emerald-500/20 transition-colors"
+                      className="aspect-square rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer"
+                      style={{ animationDelay: `${i * 100}ms` }}
                     >
-                      <Icon className="h-8 w-8 text-emerald-600" />
+                      <Icon className="h-8 w-8 text-primary" />
                     </div>
                   ))}
                 </div>
@@ -303,80 +355,172 @@ export default function ClubsPage() {
       </section>
 
       {/* Active Clubs Section */}
-      <section id="clubs" className="py-16 md:py-20">
+      <section id="clubs" className="py-20 md:py-28">
         <div className="container">
-          <h2 className="mb-12 text-3xl font-bold">Active Clubs</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {clubs.map((club) => (
-              <Link
-                key={club.id}
-                href={`/clubs/${club.id}`}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-emerald-500/50 hover:shadow-lg"
-              >
-                <div className="p-6 space-y-4">
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600">
-                    <Award className="h-3 w-3" />
-                    ACTIVE CLUB
-                  </div>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Clubs</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              Explore KKWIEER's diverse student clubs. Each club offers unique opportunities for learning, networking,
+              and personal growth.
+            </p>
+          </div>
 
-                  {/* Club Logo */}
-                  <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-muted ring-1 ring-border">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {clubs.map((club) => {
+              const colors = CLUB_COLORS[club.id as keyof typeof CLUB_COLORS]
+
+              return (
+                <Link key={club.id} href={`/clubs/${club.id}`}>
+                  <Card
+                    className="group relative overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-border/50 h-full"
+                    style={{
+                      ["--brand-color" as string]: colors.primary,
+                      ["--brand-light" as string]: colors.light,
+                      ["--brand-glow" as string]: colors.glow,
+                    }}
+                  >
                     <div
-                      className="h-full w-full bg-cover bg-center"
-                      style={{ backgroundImage: `url(${club.logo})` }}
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        background: `linear-gradient(135deg, ${colors.glow}, transparent, ${colors.glow})`,
+                        filter: "blur(20px)",
+                      }}
                     />
-                  </div>
 
-                  {/* Club Name */}
-                  <h3 className="text-xl font-bold group-hover:text-emerald-600 transition-colors">{club.name}</h3>
+                    <div
+                      className="h-1 w-full transition-all duration-500"
+                      style={{
+                        background: `linear-gradient(90deg, ${colors.light}, ${colors.primary}, ${colors.light})`,
+                        opacity: 0.5,
+                      }}
+                    />
 
-                  {/* Mission */}
-                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{club.mission}</p>
+                    <CardContent className="p-6 text-center relative">
+                      <div
+                        className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+                        style={{ backgroundColor: colors.glow }}
+                      />
 
-                  {/* Social Links */}
-                  <div className="flex gap-2">
-                    {club.linkedin && (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-emerald-500/10 hover:text-emerald-600 transition-colors">
-                        <Linkedin className="h-4 w-4" />
-                      </div>
-                    )}
-                    {club.instagram && (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-emerald-500/10 hover:text-emerald-600 transition-colors">
-                        <Instagram className="h-4 w-4" />
-                      </div>
-                    )}
-                  </div>
+                      <div className="space-y-4 relative">
+                        {/* Centered Logo */}
+                        <div className="flex justify-center">
+                          <div
+                            className="relative w-20 h-20 rounded-2xl overflow-hidden shadow-lg bg-white group-hover:scale-110 group-hover:shadow-2xl transition-all duration-500"
+                            style={{
+                              borderWidth: "2px",
+                              borderColor: "transparent",
+                              borderStyle: "solid",
+                            }}
+                          >
+                            <div
+                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                              style={{
+                                borderWidth: "2px",
+                                borderColor: colors.primary,
+                                borderStyle: "solid",
+                                borderRadius: "1rem",
+                              }}
+                            />
+                            <Image
+                              src={club.logo || "/placeholder.svg"}
+                              alt={club.name}
+                              fill
+                              className="object-contain p-2"
+                            />
+                          </div>
+                        </div>
 
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 border-t border-border pt-4">
-                    <div className="text-center">
-                      <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                        <UserCircle className="h-3 w-3" />
+                        {/* Club Name and Badge */}
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-center gap-2 flex-wrap">
+                            <h3
+                              className="font-bold text-xl leading-tight transition-all duration-500"
+                              style={{ color: "inherit" }}
+                            >
+                              <span className="group-hover:hidden">{club.name}</span>
+                              <span
+                                className="hidden group-hover:inline transition-colors duration-500"
+                                style={{ color: colors.primary }}
+                              >
+                                {club.name}
+                              </span>
+                            </h3>
+                            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 text-xs">
+                              Active
+                            </Badge>
+                          </div>
+                        </div>
+
+                        {/* Mission */}
+                        <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{club.mission}</p>
+
+                        {/* Social Links */}
+                        <div className="flex items-center justify-center gap-2">
+                          {club.linkedin && (
+                            <div
+                              className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:scale-110 transition-all duration-300"
+                              style={{
+                                backgroundColor: colors.light,
+                              }}
+                            >
+                              <Linkedin className="h-4 w-4" style={{ color: colors.primary }} />
+                            </div>
+                          )}
+                          {club.instagram && (
+                            <div
+                              className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:scale-110 transition-all duration-300"
+                              style={{
+                                backgroundColor: colors.light,
+                              }}
+                            >
+                              <Instagram className="h-4 w-4" style={{ color: colors.primary }} />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Stats */}
+                        <div className="flex items-center justify-center gap-6 pt-2">
+                          <div className="flex items-center gap-1.5">
+                            <Users className="h-4 w-4" style={{ color: colors.primary }} />
+                            <span className="font-semibold">{club.stats.participants}</span>
+                            <span className="text-xs text-muted-foreground">members</span>
+                          </div>
+
+                          <div className="h-4 w-px bg-border" />
+
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="h-4 w-4" style={{ color: colors.primary }} />
+                            <span className="font-semibold">{club.stats.events}</span>
+                            <span className="text-xs text-muted-foreground">events</span>
+                          </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full transition-all duration-500 border-2 bg-transparent relative overflow-hidden"
+                        >
+                          <span
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            style={{ backgroundColor: colors.primary }}
+                          />
+                          <span className="relative z-10 flex items-center justify-center group-hover:text-white transition-colors duration-500">
+                            View Club
+                            <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                          </span>
+                        </Button>
                       </div>
-                      <div className="text-lg font-bold">{club.stats.participants}</div>
-                      <div className="text-xs text-muted-foreground">Members</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                      </div>
-                      <div className="text-lg font-bold">{club.stats.events}</div>
-                      <div className="text-xs text-muted-foreground">Events</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                        <Users className="h-3 w-3" />
-                      </div>
-                      <div className="text-lg font-bold">{club.stats.teamSize}</div>
-                      <div className="text-xs text-muted-foreground">Team</div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }
