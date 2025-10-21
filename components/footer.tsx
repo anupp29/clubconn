@@ -3,7 +3,7 @@ import { Twitter, Youtube, Linkedin, Instagram, Mail, Phone, MapPin, ExternalLin
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="border-t border-border bg-gradient-to-b from-muted/30 to-muted/50">
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           <div className="lg:col-span-1 space-y-4">
@@ -20,7 +20,7 @@ export function Footer() {
                 href="https://twitter.com/clubconn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-emerald-600 transition-colors"
+                className="text-muted-foreground hover:text-emerald-600 hover:scale-110 transition-all"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
@@ -29,7 +29,7 @@ export function Footer() {
                 href="https://linkedin.com/company/clubconn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-emerald-600 transition-colors"
+                className="text-muted-foreground hover:text-emerald-600 hover:scale-110 transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -38,7 +38,7 @@ export function Footer() {
                 href="https://instagram.com/clubconn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-emerald-600 transition-colors"
+                className="text-muted-foreground hover:text-emerald-600 hover:scale-110 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -47,7 +47,7 @@ export function Footer() {
                 href="https://youtube.com/@clubconn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-emerald-600 transition-colors"
+                className="text-muted-foreground hover:text-emerald-600 hover:scale-110 transition-all"
                 aria-label="YouTube"
               >
                 <Youtube className="h-5 w-5" />
@@ -221,13 +221,13 @@ export function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Get in Touch</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3 text-muted-foreground group">
-                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 text-emerald-600" />
+                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 text-emerald-600 group-hover:scale-110 transition-transform" />
                 <a href="mailto:support@clubconn.com" className="hover:text-emerald-600 transition-colors">
                   support@clubconn.com
                 </a>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground group">
-                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 text-emerald-600" />
+                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 text-emerald-600 group-hover:scale-110 transition-transform" />
                 <a href="tel:+911234567890" className="hover:text-emerald-600 transition-colors">
                   +91 123 456 7890
                 </a>
@@ -241,7 +241,7 @@ export function Footer() {
               <h4 className="font-medium text-sm mb-3 text-foreground">For Institutions</h4>
               <Link
                 href="/clubconnectadmin"
-                className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 transition-colors font-medium group"
+                className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 transition-all font-medium group hover:gap-3"
               >
                 Admin Portal
                 <ExternalLink className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -259,7 +259,9 @@ export function Footer() {
               <p className="mt-1 text-xs">Empowering college communities across India 🇮🇳</p>
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>Made with ❤️ by Team ClubConn</span>
+              <span className="hover:text-emerald-600 transition-colors cursor-default">
+                Made with ❤️ by Team ClubConn
+              </span>
             </div>
           </div>
         </div>
