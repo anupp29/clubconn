@@ -11,9 +11,6 @@ import {
   UserCircle,
   Award,
   Sparkles,
-  Rocket,
-  Globe,
-  Network,
 } from "lucide-react"
 
 const clubs = [
@@ -215,65 +212,52 @@ export default function ClubsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.1),transparent_50%)]" />
+      <section className="relative overflow-hidden border-b border-border bg-background">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
 
-        {/* Floating decorative elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
-
-        <div className="container relative py-20 md:py-32">
+        <div className="container py-16 sm:py-20 md:py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-4 py-1.5 text-sm">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">8 Active Student Clubs</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm font-medium">
+                <Sparkles className="h-4 w-4 text-emerald-600" />
+                <span className="text-foreground">8 Active Student Clubs</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-balance">
-                KKWIEER Student <span className="text-primary">Clubs</span>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-tight">
+                KKWIEER Student <span className="text-emerald-600">Clubs</span>
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
+
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                 Join our vibrant community of student clubs promoting innovation, collaboration, and technical
-                excellence among students through events, workshops, and networking at K. K. Wagh Institute.
+                excellence through events, workshops, and networking.
               </p>
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Button size="lg" asChild className="shadow-lg hover:shadow-xl transition-shadow">
+
+              <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
+                <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
                   <Link href="#clubs">
                     <Users className="mr-2 h-5 w-5" />
                     View All Clubs
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent" asChild>
                   <Link href="/events">
                     <Calendar className="mr-2 h-5 w-5" />
                     Upcoming Events
                   </Link>
                 </Button>
               </div>
-              <p className="text-sm text-muted-foreground pt-2">
-                Got Questions?{" "}
-                <Link
-                  href="/communities"
-                  className="underline underline-offset-4 hover:text-foreground transition-colors"
-                >
-                  Visit Communities
-                </Link>
-              </p>
             </div>
+
             <div className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl blur-3xl animate-pulse" />
-              <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-2xl">
+              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg">
                 <div className="grid grid-cols-3 gap-4">
-                  {[Code2, Users, Trophy, Rocket, Network, Globe].map((Icon, i) => (
+                  {[Code2, Users, Trophy, Calendar, Award, Sparkles].map((Icon, i) => (
                     <div
                       key={i}
-                      className="aspect-square rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer"
-                      style={{ animationDelay: `${i * 100}ms` }}
+                      className="aspect-square rounded-xl bg-emerald-500/10 flex items-center justify-center hover:bg-emerald-500/20 transition-colors"
                     >
-                      <Icon className="h-8 w-8 text-primary" />
+                      <Icon className="h-8 w-8 text-emerald-600" />
                     </div>
                   ))}
                 </div>
@@ -284,16 +268,16 @@ export default function ClubsPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="border-b border-border">
-        <div className="container py-16 md:py-24">
-          <div className="grid gap-8 md:grid-cols-3">
+      <section className="border-b border-border py-16 md:py-20">
+        <div className="container">
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
             {benefits.map((benefit) => (
-              <div key={benefit.title} className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-                  <benefit.icon className="h-6 w-6 text-foreground" />
+              <div key={benefit.title} className="flex flex-col items-center text-center space-y-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
+                  <benefit.icon className="h-6 w-6 text-emerald-600" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">{benefit.title}</h3>
-                <p className="text-sm text-muted-foreground text-pretty">{benefit.description}</p>
+                <h3 className="text-lg font-semibold">{benefit.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -301,16 +285,16 @@ export default function ClubsPage() {
       </section>
 
       {/* Support Section */}
-      <section className="border-b border-border">
-        <div className="container py-16 md:py-24">
+      <section className="border-b border-border py-16 md:py-20">
+        <div className="container">
           <h2 className="mb-12 text-center text-3xl font-bold">Support from KKWIEER</h2>
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
             {support.map((item) => (
               <div key={item.title} className="flex gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
                 <div>
                   <h3 className="mb-1 font-semibold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -319,25 +303,24 @@ export default function ClubsPage() {
       </section>
 
       {/* Active Clubs Section */}
-      <section id="clubs" className="py-16 md:py-24">
+      <section id="clubs" className="py-16 md:py-20">
         <div className="container">
           <h2 className="mb-12 text-3xl font-bold">Active Clubs</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {clubs.map((club) => (
               <Link
                 key={club.id}
                 href={`/clubs/${club.id}`}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/50 hover:shadow-lg"
+                className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-emerald-500/50 hover:shadow-lg"
               >
-                <div className="p-6">
-                  {/* Badge */}
-                  <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                <div className="p-6 space-y-4">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600">
                     <Award className="h-3 w-3" />
                     ACTIVE CLUB
                   </div>
 
                   {/* Club Logo */}
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-muted">
+                  <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-muted ring-1 ring-border">
                     <div
                       className="h-full w-full bg-cover bg-center"
                       style={{ backgroundImage: `url(${club.logo})` }}
@@ -345,20 +328,20 @@ export default function ClubsPage() {
                   </div>
 
                   {/* Club Name */}
-                  <h3 className="mb-2 text-xl font-bold">{club.name}</h3>
+                  <h3 className="text-xl font-bold group-hover:text-emerald-600 transition-colors">{club.name}</h3>
 
                   {/* Mission */}
-                  <p className="mb-4 text-sm text-muted-foreground line-clamp-3">{club.mission}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{club.mission}</p>
 
                   {/* Social Links */}
-                  <div className="mb-4 flex gap-2">
+                  <div className="flex gap-2">
                     {club.linkedin && (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-emerald-500/10 hover:text-emerald-600 transition-colors">
                         <Linkedin className="h-4 w-4" />
                       </div>
                     )}
                     {club.instagram && (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-emerald-500/10 hover:text-emerald-600 transition-colors">
                         <Instagram className="h-4 w-4" />
                       </div>
                     )}
@@ -369,23 +352,23 @@ export default function ClubsPage() {
                     <div className="text-center">
                       <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
                         <UserCircle className="h-3 w-3" />
-                        <span>Participants</span>
                       </div>
                       <div className="text-lg font-bold">{club.stats.participants}</div>
+                      <div className="text-xs text-muted-foreground">Members</div>
                     </div>
                     <div className="text-center">
                       <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
                         <Calendar className="h-3 w-3" />
-                        <span>Events</span>
                       </div>
                       <div className="text-lg font-bold">{club.stats.events}</div>
+                      <div className="text-xs text-muted-foreground">Events</div>
                     </div>
                     <div className="text-center">
                       <div className="mb-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
                         <Users className="h-3 w-3" />
-                        <span>Team</span>
                       </div>
                       <div className="text-lg font-bold">{club.stats.teamSize}</div>
+                      <div className="text-xs text-muted-foreground">Team</div>
                     </div>
                   </div>
                 </div>

@@ -136,39 +136,33 @@ export default function EventsPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.1),transparent_50%)]" />
+      <section className="relative overflow-hidden border-b border-border bg-background">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
 
-        {/* Floating decorative elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
-
-        <div className="container relative py-20 md:py-28">
+        <div className="container py-16 sm:py-20 md:py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-balance">Events</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-tight">
+                Events
+              </h1>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                 We conduct various events encouraging the spirit of innovation and promoting technology across the
-                campus. Monthly club meetups, tech conferences, and hackathons - join us in building the future.
+                campus. Join us in building the future.
               </p>
-              <Button size="lg" className="mt-4 shadow-lg hover:shadow-xl transition-shadow">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 Explore Events
               </Button>
             </div>
             <div className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl blur-3xl animate-pulse" />
-              <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-2xl">
+              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg">
                 <div className="grid grid-cols-3 gap-4">
                   {[Code, Users, Calendar, Rocket, Network, Globe].map((Icon, i) => (
                     <div
                       key={i}
-                      className="aspect-square rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer"
-                      style={{ animationDelay: `${i * 100}ms` }}
+                      className="aspect-square rounded-xl bg-emerald-500/10 flex items-center justify-center hover:bg-emerald-500/20 transition-colors"
                     >
-                      <Icon className="h-8 w-8 text-primary" />
+                      <Icon className="h-8 w-8 text-emerald-600" />
                     </div>
                   ))}
                 </div>
@@ -179,29 +173,27 @@ export default function EventsPage() {
       </section>
 
       {/* Community Events Section */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Community Events</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl">
+          <div className="mb-12 space-y-4">
+            <h2 className="text-3xl md:text-4xl font-bold">Community Events</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
               We support various events encouraging the spirit of innovation and promoting technology across the campus.
-              The ClubConn communities in different departments build their own niches by hosting events that foster the
-              spirit of clubs.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {communityEvents.map((event, index) => {
               const Icon = event.icon
               return (
                 <div
                   key={index}
-                  className="group relative bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  className="group bg-card border border-border rounded-xl p-6 hover:border-emerald-500/50 hover:shadow-lg transition-all space-y-4"
                 >
-                  <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{event.title}</h3>
+                  <h3 className="text-xl font-semibold">{event.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{event.description}</p>
                 </div>
               )
@@ -211,74 +203,60 @@ export default function EventsPage() {
       </section>
 
       {/* Active and Upcoming Events Section */}
-      <section className="py-20 md:py-28 bg-muted/30">
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
-          <div className="mb-16 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-sm">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Happening Now</span>
+          <div className="mb-12 text-center space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm font-medium">
+              <Sparkles className="h-4 w-4 text-emerald-600" />
+              <span className="text-foreground">Happening Now</span>
             </div>
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-balance md:text-5xl">
-              Active and <span className="text-primary">Upcoming Events</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
+              Active and <span className="text-emerald-600">Upcoming Events</span>
             </h2>
             <p className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
               Join the most exciting events from KKWIEER's top clubs and communities
             </p>
-            <Link
-              href="#"
-              className="mt-6 inline-flex items-center text-sm font-medium text-primary hover:underline transition-all"
-            >
-              View all Events →
-            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {upcomingEvents.map((event, index) => (
               <Link key={index} href={event.link} className="block">
-                <Card className="group relative overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border-border/50 hover:border-primary/50 h-full">
-                  <div className={`h-1 w-full bg-gradient-to-r ${event.color}`} />
+                <Card className="group relative overflow-hidden hover:shadow-lg hover:border-emerald-500/50 transition-all border-border/50 h-full">
+                  <div className="h-1 w-full bg-emerald-600" />
 
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex flex-col gap-2">
-                        <Badge variant="outline" className="text-xs font-semibold w-fit">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-2">
+                        <Badge variant="outline" className="text-xs font-semibold">
                           {event.tag}
                         </Badge>
-                        <span className="text-xs text-muted-foreground">{event.club}</span>
+                        <span className="text-xs text-muted-foreground block">{event.club}</span>
                       </div>
-                      {event.badge && (
-                        <Badge className={`bg-gradient-to-r ${event.color} text-white border-0 shadow-lg`}>
-                          {event.badge}
-                        </Badge>
-                      )}
+                      {event.badge && <Badge className="bg-emerald-600 text-white border-0">{event.badge}</Badge>}
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Calendar className="h-4 w-4" />
                       <span className="font-medium">{event.date}</span>
                     </div>
 
-                    <h3 className="font-bold mb-3 text-lg leading-tight group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-lg leading-tight group-hover:text-emerald-600 transition-colors">
                       {event.title}
                     </h3>
 
-                    <div className="flex items-start gap-2 text-sm text-muted-foreground mb-4">
+                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
                       <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                       <span className="line-clamp-2">{event.location}</span>
                     </div>
-
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}
-                    />
                   </CardContent>
                 </Card>
               </Link>
             ))}
           </div>
 
-          <div className="mt-16 text-center">
-            <p className="text-muted-foreground mb-4">Don't see your club's event?</p>
-            <Button size="lg" asChild className="shadow-lg hover:scale-105 transition-all">
+          <div className="mt-12 text-center space-y-4">
+            <p className="text-muted-foreground">Don't see your club's event?</p>
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
               <Link href="/dashboard">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Submit Your Event
@@ -289,27 +267,23 @@ export default function EventsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28 border-t border-border">
+      <section className="py-16 md:py-20 border-t border-border">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-balance">Explore events in your region!</h2>
-              <p className="text-lg text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl font-bold text-balance">Explore events in your region!</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Follow a club community and explore club events in your locale!
               </p>
-              <Button size="lg" className="mt-4">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 <Users className="mr-2 h-5 w-5" />
                 Join a Community
               </Button>
             </div>
             <div className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-3xl animate-pulse" />
-              <div className="relative bg-card border border-border rounded-2xl p-12 shadow-xl">
+              <div className="bg-card border border-border rounded-2xl p-12 shadow-lg">
                 <div className="flex items-center justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse" />
-                    <Globe className="relative h-32 w-32 text-primary" />
-                  </div>
+                  <Globe className="h-32 w-32 text-emerald-600" />
                 </div>
               </div>
             </div>
