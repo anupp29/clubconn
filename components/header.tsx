@@ -133,11 +133,11 @@ export function Header() {
             <Link href="/events" className="text-sm font-medium hover:text-primary transition-colors">
               Events
             </Link>
-            <Link href="/communities" className="text-sm font-medium hover:text-primary transition-colors">
-              Communities
-            </Link>
             <Link href="/clubs" className="text-sm font-medium hover:text-primary transition-colors">
               Clubs
+            </Link>
+            <Link href="/communities" className="text-sm font-medium hover:text-primary transition-colors">
+              Communities
             </Link>
             <Link href="/vision" className="text-sm font-medium hover:text-primary transition-colors">
               Vision
@@ -278,18 +278,18 @@ export function Header() {
                     Events
                   </Link>
                   <Link
-                    href="/communities"
-                    className="text-base font-medium hover:text-primary transition-colors block px-6 py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Communities
-                  </Link>
-                  <Link
                     href="/clubs"
                     className="text-base font-medium hover:text-primary transition-colors block px-6 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Clubs
+                  </Link>
+                  <Link
+                    href="/communities"
+                    className="text-base font-medium hover:text-primary transition-colors block px-6 py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Communities
                   </Link>
                   <Link
                     href="/vision"

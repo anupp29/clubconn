@@ -235,15 +235,15 @@ export default function ClubsPage() {
 
               <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
                 <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
-                  <Link href="#clubs">
-                    <Users className="mr-2 h-5 w-5" />
-                    View All Clubs
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent" asChild>
                   <Link href="/events">
                     <Calendar className="mr-2 h-5 w-5" />
                     Upcoming Events
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent" asChild>
+                  <Link href="#clubs">
+                    <Users className="mr-2 h-5 w-5" />
+                    View All Clubs
                   </Link>
                 </Button>
               </div>
