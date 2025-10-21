@@ -14,6 +14,8 @@ import {
   Clock,
   Target,
   Eye,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react"
 
 const clubsData = {
@@ -232,7 +234,7 @@ const clubsData = {
     id: "desoc",
     name: "DESOC",
     shortName: "DESOC",
-    logo: "https://media.licdn.com/dms/image/v2/D4D03AQEw2mbHXhRKAg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1710820747705?e=1762387200&v=beta&t=IiAKyLeuTtGRgVS3rwHhiqOVvGiYkVNySSXSziKAeWg",
+    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQEw2mbHXhRKAg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1710820747705?e=1762387200&v=beta&t=IiAKyLeuTtGRgVS3rwHhiqOVvGiYkVNySSXSziKAeWg",
     tagline: "Where Design Meets Code",
     description:
       "DESOC empowers students to combine creativity with technology through hands-on projects, workshops, and competitions. We bridge the gap between design thinking and software development.",
@@ -746,33 +748,65 @@ export default function ClubPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
+      {/* Sticky Quick Navigation */}
+      <nav className="sticky top-16 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container">
+          <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-hide">
+            <Link
+              href="#about"
+              className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              About
+            </Link>
+            <Link
+              href="#journey"
+              className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Journey
+            </Link>
+            <Link
+              href="#team"
+              className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Team
+            </Link>
+            <Link
+              href="#events"
+              className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Past Events
+            </Link>
+            <Link
+              href="#upcoming"
+              className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Upcoming
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section - Enhanced */}
       <section className="relative overflow-hidden border-b border-border">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-background to-primary/5" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(120,119,198,0.08),transparent_50%)]" />
 
-        {/* Floating decorative elements */}
-        <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
-
-        <div className="container relative py-12 md:py-20">
-          <div className="mb-6">
+        <div className="container relative py-16 md:py-24">
+          <div className="mb-8">
             <Link
               href="/clubs"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Clubs
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              Back to All Clubs
             </Link>
           </div>
 
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-            {/* Club Logo */}
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
             <div className="shrink-0">
-              <div className="relative h-32 w-32 overflow-hidden rounded-2xl border-2 border-border bg-white shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
+              <div className="relative h-40 w-40 overflow-hidden rounded-3xl border-4 border-border bg-white shadow-2xl ring-4 ring-emerald-500/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-primary/10" />
                 <div
                   className="relative h-full w-full bg-cover bg-center"
                   style={{ backgroundImage: `url(${club.logo})` }}
@@ -780,200 +814,215 @@ export default function ClubPage({ params }: { params: { slug: string } }) {
               </div>
             </div>
 
-            {/* Club Info */}
-            <div className="flex-1">
-              <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm border border-primary/20">
-                <Award className="h-3 w-3" />
-                ACTIVE CLUB
+            <div className="flex-1 space-y-6">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 backdrop-blur-sm border border-emerald-500/20">
+                  <Sparkles className="h-4 w-4" />
+                  ACTIVE CLUB • EST. {club.founded}
+                </div>
+                <h1 className="text-5xl font-bold tracking-tight lg:text-6xl xl:text-7xl text-balance">{club.name}</h1>
+                <p className="text-2xl text-muted-foreground text-pretty max-w-3xl">{club.tagline}</p>
               </div>
-              <h1 className="mb-2 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-balance">
-                {club.name}
-              </h1>
-              <p className="mb-6 text-xl text-muted-foreground text-pretty">{club.tagline}</p>
 
-              {/* Stats */}
-              <div className="mb-6 flex flex-wrap gap-6">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Users className="h-5 w-5 text-primary" />
+              <div className="flex flex-wrap gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 ring-1 ring-emerald-500/30">
+                    <Users className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">{club.stats.participants}</div>
-                    <div className="text-xs text-muted-foreground">Participants</div>
+                    <div className="text-3xl font-bold">{club.stats.participants}+</div>
+                    <div className="text-sm text-muted-foreground">Active Members</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Calendar className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/30 ring-1 ring-primary/30">
+                    <Calendar className="h-7 w-7 text-primary" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">{club.stats.events}</div>
-                    <div className="text-xs text-muted-foreground">Events</div>
+                    <div className="text-3xl font-bold">{club.stats.events}+</div>
+                    <div className="text-sm text-muted-foreground">Events Hosted</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Award className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/20 ring-1 ring-amber-500/30">
+                    <Award className="h-7 w-7 text-amber-600 dark:text-amber-400" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">{club.stats.teamSize}</div>
-                    <div className="text-xs text-muted-foreground">Team Members</div>
+                    <div className="text-3xl font-bold">{club.stats.teamSize}</div>
+                    <div className="text-sm text-muted-foreground">Core Team</div>
                   </div>
                 </div>
               </div>
 
-              {/* Social Links & Actions */}
               <div className="flex flex-wrap items-center gap-3">
+                <Button size="lg" asChild className="shadow-lg hover:shadow-xl transition-all">
+                  <Link href={`/clubs/${club.id}/events/new`}>
+                    <Calendar className="mr-2 h-5 w-5" />
+                    Create Event
+                  </Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="shadow-sm hover:shadow-md transition-all bg-transparent"
+                >
+                  <Link href={`/clubs/${club.id}/edit`}>
+                    <Edit className="mr-2 h-5 w-5" />
+                    Manage Club
+                  </Link>
+                </Button>
                 {club.linkedin && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="shadow-sm hover:shadow-md transition-shadow bg-transparent"
-                  >
+                  <Button size="lg" variant="ghost" asChild>
                     <Link href={club.linkedin} target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="mr-2 h-4 w-4" />
+                      <Linkedin className="mr-2 h-5 w-5" />
                       LinkedIn
                     </Link>
                   </Button>
                 )}
                 {club.instagram && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="shadow-sm hover:shadow-md transition-shadow bg-transparent"
-                  >
+                  <Button size="lg" variant="ghost" asChild>
                     <Link href={club.instagram} target="_blank" rel="noopener noreferrer">
-                      <Instagram className="mr-2 h-4 w-4" />
+                      <Instagram className="mr-2 h-5 w-5" />
                       Instagram
                     </Link>
                   </Button>
                 )}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="shadow-sm hover:shadow-md transition-shadow bg-transparent"
-                >
+                <Button size="lg" variant="ghost" asChild>
                   <Link href={`mailto:${club.email}`}>
-                    <Mail className="mr-2 h-4 w-4" />
+                    <Mail className="mr-2 h-5 w-5" />
                     Contact
                   </Link>
                 </Button>
-                <Button size="sm" asChild className="shadow-lg hover:shadow-xl transition-shadow">
-                  <Link href={`/clubs/${club.id}/edit`}>
-                    <Edit className="mr-2 h-4 w-4" />
-                    Edit Club
-                  </Link>
-                </Button>
-                <Button size="sm" asChild className="shadow-lg hover:shadow-xl transition-shadow">
-                  <Link href={`/clubs/${club.id}/events/new`}>
-                    <Calendar className="mr-2 h-4 w-4" />
-                    Create Event
-                  </Link>
-                </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h2 className="mb-6 text-3xl font-bold">About {club.shortName}</h2>
-          <p className="mb-8 text-lg leading-relaxed text-muted-foreground">{club.description}</p>
+      {/* About Section - Enhanced */}
+      <section id="about" className="border-b border-border scroll-mt-32">
+        <div className="container py-20">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-4xl font-bold text-center">About {club.shortName}</h2>
+            <p className="mb-12 text-xl leading-relaxed text-muted-foreground text-center text-balance">
+              {club.description}
+            </p>
 
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-xl border border-border bg-card p-6">
-              <div className="mb-3 flex items-center gap-2">
-                <Target className="h-5 w-5 text-primary" />
-                <h3 className="text-xl font-semibold">Our Mission</h3>
-              </div>
-              <p className="leading-relaxed text-muted-foreground">{club.mission}</p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-6">
-              <div className="mb-3 flex items-center gap-2">
-                <Eye className="h-5 w-5 text-primary" />
-                <h3 className="text-xl font-semibold">Our Vision</h3>
-              </div>
-              <p className="leading-relaxed text-muted-foreground">{club.vision}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* History Timeline */}
-      <section className="border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h2 className="mb-8 text-3xl font-bold">Our Journey</h2>
-          <div className="relative space-y-8 before:absolute before:left-[7px] before:top-2 before:h-[calc(100%-1rem)] before:w-0.5 before:bg-border md:before:left-[15px]">
-            {club.history.map((item, index) => (
-              <div key={index} className="relative flex gap-4 md:gap-6">
-                <div className="relative flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background md:h-8 md:w-8">
-                  <div className="h-2 w-2 rounded-full bg-primary" />
-                </div>
-                <div className="flex-1 pb-8">
-                  <div className="mb-1 text-sm font-semibold text-primary">{item.year}</div>
-                  <h3 className="mb-2 text-lg font-bold">{item.event}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="group relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card to-card/50 p-8 transition-all hover:shadow-xl hover:border-emerald-500/50">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl transition-all group-hover:bg-emerald-500/10" />
+                <div className="relative">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 ring-1 ring-emerald-500/20">
+                      <Target className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Our Mission</h3>
+                  </div>
+                  <p className="leading-relaxed text-muted-foreground">{club.mission}</p>
                 </div>
               </div>
-            ))}
+
+              <div className="group relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card to-card/50 p-8 transition-all hover:shadow-xl hover:border-primary/50">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl transition-all group-hover:bg-primary/10" />
+                <div className="relative">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/20">
+                      <Eye className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Our Vision</h3>
+                  </div>
+                  <p className="leading-relaxed text-muted-foreground">{club.vision}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Committee Members */}
-      <section className="border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h2 className="mb-8 text-3xl font-bold">Committee Members</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* History Timeline - Enhanced */}
+      <section id="journey" className="border-b border-border scroll-mt-32">
+        <div className="container py-20">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-12 text-4xl font-bold text-center">Our Journey</h2>
+            <div className="relative space-y-12 before:absolute before:left-[19px] before:top-4 before:h-[calc(100%-2rem)] before:w-0.5 before:bg-gradient-to-b before:from-emerald-500 before:via-primary before:to-emerald-500 md:before:left-[31px]">
+              {club.history.map((item, index) => (
+                <div key={index} className="relative flex gap-6 md:gap-8 group">
+                  <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-4 border-background bg-gradient-to-br from-emerald-500 to-primary shadow-lg ring-4 ring-emerald-500/20 transition-all group-hover:scale-110 group-hover:ring-8 md:h-16 md:w-16">
+                    <div className="h-3 w-3 rounded-full bg-white md:h-4 md:w-4" />
+                  </div>
+                  <div className="flex-1 pb-8">
+                    <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                      {item.year}
+                    </div>
+                    <h3 className="mb-3 text-2xl font-bold">{item.event}</h3>
+                    <p className="text-base leading-relaxed text-muted-foreground">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Committee Members - Enhanced */}
+      <section id="team" className="border-b border-border scroll-mt-32">
+        <div className="container py-20">
+          <h2 className="mb-12 text-4xl font-bold text-center">Meet Our Team</h2>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {club.committee.map((member, index) => (
-              <div key={index} className="rounded-xl border border-border bg-card p-6 text-center">
-                <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full w-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${member.image})` }}
-                  />
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 text-center transition-all hover:shadow-2xl hover:border-emerald-500/50"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl transition-all group-hover:bg-emerald-500/10" />
+                <div className="relative">
+                  <div className="mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full bg-gradient-to-br from-emerald-500/20 to-primary/20 p-1 ring-4 ring-emerald-500/10 transition-all group-hover:ring-8 group-hover:ring-emerald-500/20">
+                    <div className="h-full w-full rounded-full overflow-hidden bg-muted">
+                      <div
+                        className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-110"
+                        style={{ backgroundImage: `url(${member.image})` }}
+                      />
+                    </div>
+                  </div>
+                  <h3 className="mb-2 text-xl font-bold">{member.name}</h3>
+                  <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{member.role}</p>
                 </div>
-                <h3 className="mb-1 text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Past Events Gallery */}
-      <section className="border-b border-border">
-        <div className="container py-12 md:py-16">
-          <h2 className="mb-8 text-3xl font-bold">Past Events</h2>
-          <div className="grid gap-6 md:grid-cols-2">
+      {/* Past Events Gallery - Enhanced */}
+      <section id="events" className="border-b border-border scroll-mt-32">
+        <div className="container py-20">
+          <h2 className="mb-12 text-4xl font-bold text-center">Past Events</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {club.events.map((event, index) => (
               <Link
                 key={index}
                 href={`/clubs/${club.id}/${event.slug}`}
-                className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:border-primary/50"
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50 hover:-translate-y-1"
               >
                 <div className="aspect-video overflow-hidden bg-muted">
                   <div
-                    className="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                    className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                     style={{ backgroundImage: `url(${event.image})` }}
                   />
                 </div>
                 <div className="p-6">
-                  <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="mb-3 flex items-center gap-2 text-sm font-medium text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     {event.date}
                   </div>
-                  <h3 className="mb-2 text-xl font-bold group-hover:text-primary transition-colors">{event.title}</h3>
-                  <p className="text-sm text-muted-foreground">{event.description}</p>
-                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary">
+                  <h3 className="mb-3 text-xl font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                    {event.title}
+                  </h3>
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground line-clamp-2">{event.description}</p>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
                     View Event Report
-                    <ArrowLeft className="h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -982,39 +1031,48 @@ export default function ClubPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-12 md:py-16">
+      {/* Upcoming Events - Enhanced */}
+      <section id="upcoming" className="py-20 scroll-mt-32">
         <div className="container">
-          <h2 className="mb-8 text-3xl font-bold">Upcoming Events</h2>
-          <div className="space-y-4">
+          <h2 className="mb-12 text-4xl font-bold text-center">Upcoming Events</h2>
+          <div className="space-y-6 max-w-5xl mx-auto">
             {club.upcomingEvents.map((event, index) => (
               <Link
                 key={index}
                 href={`/clubs/${club.id}/${event.slug}/rsvp`}
-                className="block rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/50 group"
+                className="block group relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card to-card/50 p-8 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50"
               >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="flex-1">
-                    <h3 className="mb-2 text-xl font-bold group-hover:text-primary transition-colors">{event.title}</h3>
-                    <p className="mb-4 text-sm text-muted-foreground">{event.description}</p>
-                    <div className="flex flex-wrap gap-4 text-sm">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        {event.date}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl transition-all group-hover:bg-emerald-500/10" />
+                <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="flex-1 space-y-4">
+                    <h3 className="text-2xl font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      {event.title}
+                    </h3>
+                    <p className="text-base leading-relaxed text-muted-foreground">{event.description}</p>
+                    <div className="flex flex-wrap gap-6">
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
+                          <Calendar className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                        </div>
+                        <span>{event.date}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="h-4 w-4" />
-                        {event.time}
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                          <Clock className="h-5 w-5 text-primary" />
+                        </div>
+                        <span>{event.time}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
-                        {event.location}
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10">
+                          <MapPin className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                        </div>
+                        <span>{event.location}</span>
                       </div>
                     </div>
                   </div>
-                  <Button className="shrink-0">
+                  <Button size="lg" className="shrink-0 shadow-lg hover:shadow-xl transition-all">
                     Register Now
-                    <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </div>
               </Link>
