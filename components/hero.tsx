@@ -7,9 +7,9 @@ import Link from "next/link"
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-background py-16 sm:py-20 md:py-24 lg:py-32">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-500/3 via-transparent to-transparent" />
 
       <div className="container">
         <div className="mx-auto max-w-4xl text-center space-y-8">
