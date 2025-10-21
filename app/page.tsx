@@ -10,15 +10,29 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <AboutSection />
-      <ProgramsSection />
-      <FlagshipEvents />
-      <UpcomingEvents />
-      <IndustryPartnership />
-      <FaqSection />
-      <NewsletterContact />
+    <main className="min-h-screen scroll-smooth">
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="about">
+        <AboutSection />
+      </section>
+      <section id="programs">
+        <ProgramsSection />
+      </section>
+      <section id="events">
+        <FlagshipEvents />
+        <UpcomingEvents />
+      </section>
+      <section id="partnerships">
+        <IndustryPartnership />
+      </section>
+      <section id="faq">
+        <FaqSection />
+      </section>
+      <section id="contact">
+        <NewsletterContact />
+      </section>
       <Footer />
     </main>
   )

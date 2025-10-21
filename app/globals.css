@@ -122,9 +122,29 @@
     @apply bg-background text-foreground;
   }
 
-  /* Added smooth scrolling and better container centering */
+  /* Enhanced smooth scrolling with better performance */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for fixed header */
+  }
+
+  /* Smooth scroll for all anchor links */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   .container {

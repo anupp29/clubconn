@@ -1,7 +1,6 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -279,8 +278,6 @@ export default function CityCommunitPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Header />
-
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
         <div className="absolute top-20 left-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
