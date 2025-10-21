@@ -9,20 +9,41 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-emerald-50/30 py-16 sm:py-20 md:py-24 lg:py-32">
       <svg className="absolute inset-0 -z-10 h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gridGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+          {/* Bottom to top gradient for depth */}
+          <linearGradient id="gridGradientVertical" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="rgba(0,0,0,0.4)" />
+            <stop offset="40%" stopColor="rgba(0,0,0,0.25)" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.12)" />
+          </linearGradient>
+
+          {/* Left to right gradient for additional depth */}
+          <linearGradient id="gridGradientHorizontal" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="rgba(0,0,0,0.35)" />
-            <stop offset="50%" stopColor="rgba(0,0,0,0.25)" />
+            <stop offset="50%" stopColor="rgba(0,0,0,0.2)" />
             <stop offset="100%" stopColor="rgba(0,0,0,0.15)" />
           </linearGradient>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <rect width="40" height="40" fill="none" stroke="url(#gridGradient)" strokeWidth="3" />
-            <circle cx="0" cy="0" r="2" fill="url(#gridGradient)" />
+
+          {/* Combined gradient for perfect depth */}
+          <radialGradient id="gridGradientRadial" cx="50%" cy="50%">
+            <stop offset="0%" stopColor="rgba(0,0,0,0.15)" />
+            <stop offset="70%" stopColor="rgba(0,0,0,0.25)" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.4)" />
+          </radialGradient>
+
+          {/* Perfect grid pattern with 50px spacing */}
+          <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            {/* Grid lines with perfect thickness */}
+            <rect width="50" height="50" fill="none" stroke="url(#gridGradientRadial)" strokeWidth="2.5" />
+
+            {/* Prominent intersection dots */}
+            <circle cx="0" cy="0" r="2.5" fill="url(#gridGradientRadial)" opacity="0.8" />
+            <circle cx="0" cy="0" r="1.5" fill="rgba(16,185,129,0.3)" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
 
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-100/40 via-white/50 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-100/50 via-white/60 to-transparent" />
 
       <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl -z-10" />
