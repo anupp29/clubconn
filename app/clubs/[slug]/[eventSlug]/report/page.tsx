@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -10,12 +9,47 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, X, Upload, CheckCircle } from "lucide-react"
+import { getEventReport } from "@/lib/mongodb-reports"
+import { EventReportDisplay } from "@/components/event-report-display"
 
-export default function EventReportPage({ params }: { params: { slug: string; eventSlug: string } }) {
+export default async function EventReportPage({
+  params,
+}: {
+  params: { slug: string; eventSlug: string }
+}) {
   const router = useRouter()
   const [submitted, setSubmitted] = useState(false)
   const [photos, setPhotos] = useState<string[]>([])
   const [certificates, setCertificates] = useState<string[]>([])
+
+  const eventId = 3 // This should be dynamically determined from eventSlug
+  const report = await getEventReport(eventId)
+
+  // If report exists, show it
+  if (report && report.status === "published") {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container py-8 max-w-6xl">
+          <div className="mb-6">
+            <Link
+              href={`/clubs/${params.slug}/${params.eventSlug}`}
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Event
+            </Link>
+          </div>
+
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold mb-2">{report.report_title}</h1>
+            <p className="text-muted-foreground">Published on {new Date(report.created_at).toLocaleDateString()}</p>
+          </div>
+
+          <EventReportDisplay report={report} />
+        </div>
+      </div>
+    )
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -31,7 +65,7 @@ export default function EventReportPage({ params }: { params: { slug: string; ev
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+          <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold mb-2">Report Submitted Successfully!</h1>
           <p className="text-muted-foreground mb-4">Your event report has been saved and will be reviewed.</p>
           <p className="text-sm text-muted-foreground">Redirecting...</p>
@@ -242,6 +276,24 @@ export default function EventReportPage({ params }: { params: { slug: string; ev
                   </p>
                 </div>
               </div>
+
+              {certificates.length > 0 && (
+                <div className="grid grid-cols-3 gap-4">
+                  {certificates.map((certificate, index) => (
+                    <div key={index} className="relative aspect-video rounded-lg bg-muted">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute top-1 right-1"
+                        onClick={() => setCertificates(certificates.filter((_, i) => i !== index))}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
