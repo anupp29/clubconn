@@ -22,6 +22,7 @@
 - [About ClubConn](#about-clubconn)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Database Architecture](#database-architecture)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Environment Setup](#environment-setup)
@@ -183,6 +184,76 @@ ClubConn is a comprehensive platform designed to connect students with all clubs
 
 ---
 
+## 🗄️ Database Architecture
+
+ClubConn uses a **hybrid database architecture** for optimal performance and flexibility:
+
+### MySQL Database
+- **Purpose**: Structured relational data
+- **Database**: `clubconn`
+- **Tables**: Users, clubs, events, certificates, badges, etc.
+- **Normalization**: 3NF/BCNF
+- **Features**: ACID compliance, triggers, procedures, views, functions
+
+### MongoDB Database
+- **Purpose**: Flexible event reports with club-specific fields
+- **Database**: `clubconn_reports`
+- **Collection**: `event_reports`
+- **Features**: Rich documents, nested data, schema validation
+
+**Why Hybrid?**
+- MySQL ensures data integrity for critical transactional data
+- MongoDB provides flexibility for complex, document-based event reports
+- Each club can have unique report fields while maintaining consistency
+
+### Database Setup
+
+#### MySQL Setup
+
+\`\`\`bash
+# 1. Create schema
+mysql -u root -p < database/mysql/01_schema.sql
+
+# 2. Create indexes
+mysql -u root -p clubconn < database/mysql/02_indexes.sql
+
+# 3. Create views
+mysql -u root -p clubconn < database/mysql/03_views.sql
+
+# 4. Create procedures
+mysql -u root -p clubconn < database/mysql/04_procedures.sql
+
+# 5. Create functions
+mysql -u root -p clubconn < database/mysql/05_functions.sql
+
+# 6. Create triggers
+mysql -u root -p clubconn < database/mysql/06_triggers.sql
+
+# 7. Seed data
+mysql -u root -p clubconn < database/mysql/07_sample_data.sql
+
+# 8. Verify seeding
+mysql -u root -p clubconn < database/mysql/08_verification.sql
+\`\`\`
+
+#### MongoDB Setup
+
+\`\`\`bash
+# 1. Start MongoDB
+brew services start mongodb-community@7.0  # macOS
+sudo systemctl start mongod                 # Linux
+
+# 2. Seed event reports
+mongosh clubconn_reports < database/mongodb/seed_event_reports.js
+
+# 3. Verify seeding
+mongosh clubconn_reports < database/mongodb/verify_event_reports.js
+\`\`\`
+
+**Detailed Setup Instructions**: See [database/mongodb/SETUP.md](database/mongodb/SETUP.md)
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -193,6 +264,8 @@ Before you begin, ensure you have the following installed:
 - **npm** 9.0 or higher (comes with Node.js)
 - **Git** ([Download](https://git-scm.com/))
 - **Firebase Account** ([Sign up](https://firebase.google.com/))
+- **MySQL Server** ([Download](https://www.mysql.com/downloads/))
+- **MongoDB Server** ([Download](https://www.mongodb.com/try/download/community))
 
 ### Installation
 
@@ -234,13 +307,26 @@ const firebaseConfig = {
 };
 \`\`\`
 
-5. **Run the development server**
+5. **Set up MySQL**
+
+Follow the detailed instructions in [database/mysql/SETUP.md](database/mysql/SETUP.md) to:
+- Create the `clubconn` database
+- Set up tables, indexes, views, procedures, functions, and triggers
+- Seed initial data
+
+6. **Set up MongoDB**
+
+Follow the detailed instructions in [database/mongodb/SETUP.md](database/mongodb/SETUP.md) to:
+- Start the MongoDB server
+- Seed the `clubconn_reports` database with event reports
+
+7. **Run the development server**
 
 \`\`\`bash
 npm run dev
 \`\`\`
 
-6. **Open your browser**
+8. **Open your browser**
 
 Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
@@ -315,7 +401,22 @@ clubconn/
 ├── README.md                     # This file
 ├── package.json                  # Dependencies
 ├── tsconfig.json                 # TypeScript config
-└── next.config.mjs               # Next.js config
+├── next.config.mjs               # Next.js config
+├── database/
+│   ├── mysql/
+│   │   ├── 01_schema.sql
+│   │   ├── 02_indexes.sql
+│   │   ├── 03_views.sql
+│   │   ├── 04_procedures.sql
+│   │   ├── 05_functions.sql
+│   │   ├── 06_triggers.sql
+│   │   ├── 07_sample_data.sql
+│   │   └── 08_verification.sql
+│   └── mongodb/
+│       ├── seed_event_reports.js
+│       ├── verify_event_reports.js
+│       └── SETUP.md
+└── ...
 \`\`\`
 
 ---
@@ -324,11 +425,19 @@ clubconn/
 
 ### Required Environment Variables
 
-ClubConn uses Vercel's built-in integrations for most services. However, if you're using custom Firebase or other services, you may need to set up environment variables.
-
-Create a `.env.local` file in the root directory (this file is gitignored):
+Create a `.env.local` file in the root directory:
 
 \`\`\`env
+# MongoDB Connection (Local Development)
+MONGODB_URI=mongodb://localhost:27017/clubconn_reports
+
+# MySQL Connection (if using custom database)
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=clubconn
+DB_USER=root
+DB_PASSWORD=your_password
+
 # Firebase Configuration (if using custom project)
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
