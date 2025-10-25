@@ -166,12 +166,11 @@ export function UpcomingEvents() {
 
         <div className="mt-16 text-center">
           <p className="text-muted-foreground mb-4">Don't see your club's event?</p>
-          <Link 
-            href="/dashboard"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 shadow-lg"
-          >
-            Submit Your Event
-            <Sparkles className="h-4 w-4" />
+          <Link href="/dashboard">
+            <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 shadow-lg">
+              Submit Your Event
+              <Sparkles className="h-4 w-4" />
+            </button>
           </Link>
         </div>
       </div>
