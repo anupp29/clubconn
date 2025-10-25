@@ -224,6 +224,26 @@ INSERT INTO badges (badge_name, badge_slug, description, icon, category, tier, p
 -- Special Badges
 ('Early Adopter', 'early-adopter', 'One of the first pioneers to join ClubConn', '🌟', 'special', 'platinum', 0, 'custom', 1, TRUE);
 
+-- Set badge ID variables for use in points_history and user_badges
+SET @first_steps_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'first-steps');
+SET @event_enthusiast_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'event-enthusiast');
+SET @event_veteran_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'event-veteran');
+SET @event_master_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'event-master');
+SET @team_player_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'team-player');
+SET @social_butterfly_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'social-butterfly');
+SET @club_hopper_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'club-hopper');
+SET @community_champion_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'community-champion');
+SET @rising_star_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'rising-star');
+SET @campus_influencer_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'campus-influencer');
+SET @campus_legend_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'campus-legend');
+SET @certified_pro_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'certified-pro');
+SET @certificate_collector_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'certificate-collector');
+SET @master_achiever_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'master-achiever');
+SET @xp_hunter_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'xp-hunter');
+SET @xp_master_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'xp-master');
+SET @xp_legend_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'xp-legend');
+SET @early_adopter_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'early-adopter');
+
 -- ============================================
 -- 7. EVENTS DATA (Comprehensive & Realistic)
 -- ============================================
@@ -354,14 +374,6 @@ INSERT INTO certificates (user_id, event_id, club_id, certificate_type, title, d
 -- 10. USER BADGES (Earned Badges)
 -- ============================================
 
-SET @first_steps_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'first-steps');
-SET @event_enthusiast_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'event-enthusiast');
-SET @team_player_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'team-player');
-SET @social_butterfly_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'social-butterfly');
-SET @rising_star_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'rising-star');
-SET @xp_hunter_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'xp-hunter');
-SET @campus_influencer_badge = (SELECT badge_id FROM badges WHERE badge_slug = 'campus-influencer');
-
 INSERT INTO user_badges (user_id, badge_id, earned_at, progress, is_unlocked) VALUES
 -- Rahul's badges
 (@rahul_id, @first_steps_badge, '2024-08-05 10:00:00', 100, TRUE),
@@ -464,18 +476,45 @@ INSERT INTO event_feedback (event_id, user_id, rating, feedback_text, would_reco
 -- ============================================
 
 INSERT INTO points_history (user_id, points_earned, points_type, reference_type, reference_id, description, created_at) VALUES
+-- Rahul's points
 (@rahul_id, 50, 'event_participation', 'event', @event4_id, 'Attended Machine Learning Workshop', '2024-11-25 09:50:00'),
 (@rahul_id, 25, 'badge', 'badge', @team_player_badge, 'Earned Team Player badge', '2024-08-01 14:20:00'),
 (@rahul_id, 50, 'badge', 'badge', @event_enthusiast_badge, 'Earned Event Enthusiast badge', '2024-11-20 15:00:00'),
+(@rahul_id, 100, 'badge', 'badge', @social_butterfly_badge, 'Earned Social Butterfly badge', '2024-10-15 12:00:00'),
+(@rahul_id, 100, 'badge', 'badge', @rising_star_badge, 'Earned Rising Star badge', '2024-12-01 10:00:00'),
+(@rahul_id, 100, 'badge', 'badge', @xp_hunter_badge, 'Earned XP Hunter badge', '2024-11-25 16:00:00'),
+
+-- Neha's points (Top performer)
 (@neha_id, 50, 'event_participation', 'event', @event6_id, 'Attended CP Workshop', '2024-11-20 13:55:00'),
-(@neha_id, 75, 'certificate', 'certificate', 6, 'Received CP Workshop certificate', '2024-11-22 17:00:00'),
-(@neha_id, 100, 'badge', 'badge', @campus_influencer_badge, 'Earned Campus Influencer badge', '2024-12-10 10:00:00'),
+(@neha_id, 75, 'achievement', 'certificate', 6, 'Received CP Workshop certificate', '2024-11-22 17:00:00'),
+(@neha_id, 25, 'badge', 'badge', @team_player_badge, 'Earned Team Player badge', '2024-08-01 10:00:00'),
+(@neha_id, 50, 'badge', 'badge', @event_enthusiast_badge, 'Earned Event Enthusiast badge', '2024-10-10 14:00:00'),
+(@neha_id, 100, 'badge', 'badge', @social_butterfly_badge, 'Earned Social Butterfly badge', '2024-09-20 11:00:00'),
+(@neha_id, 100, 'badge', 'badge', @rising_star_badge, 'Earned Rising Star badge', '2024-11-01 15:00:00'),
+(@neha_id, 100, 'badge', 'badge', @xp_hunter_badge, 'Earned XP Hunter badge', '2024-10-15 13:00:00'),
+(@neha_id, 200, 'badge', 'badge', @campus_influencer_badge, 'Earned Campus Influencer badge', '2024-12-10 10:00:00'),
+
+-- Vikram's points
 (@vikram_id, 25, 'badge', 'badge', @team_player_badge, 'Earned Team Player badge', '2024-07-01 10:00:00'),
 (@vikram_id, 100, 'badge', 'badge', @rising_star_badge, 'Earned Rising Star badge', '2024-12-05 14:00:00'),
+
+-- Ananya's points
 (@ananya_id, 50, 'event_participation', 'event', @event4_id, 'Attended ML Workshop', '2024-11-25 09:45:00'),
-(@ananya_id, 75, 'certificate', 'certificate', 1, 'Received ML Workshop certificate', '2024-11-27 17:00:00'),
+(@ananya_id, 75, 'achievement', 'certificate', 1, 'Received ML Workshop certificate', '2024-11-27 17:00:00'),
 (@ananya_id, 100, 'event_organization', 'event', @event4_id, 'Organized ML Workshop as instructor', '2024-11-27 18:00:00'),
-(@priya_id, 50, 'event_participation', 'event', @event5_id, 'Attended UI/UX Workshop', '2024-12-05 10:00:00');
+
+-- Priya's points
+(@priya_id, 50, 'event_participation', 'event', @event5_id, 'Attended UI/UX Workshop', '2024-12-05 10:00:00'),
+(@priya_id, 75, 'achievement', 'certificate', 5, 'Received UI/UX Workshop certificate', '2024-12-07 17:00:00'),
+
+-- Amit's points
+(@amit_id, 50, 'event_participation', 'event', @event4_id, 'Attended ML Workshop', '2024-11-25 10:05:00'),
+(@amit_id, 75, 'achievement', 'certificate', 3, 'Received ML Workshop certificate', '2024-11-27 17:00:00'),
+
+-- Ishita's points
+(@ishita_id, 50, 'event_participation', 'event', @event5_id, 'Attended UI/UX Workshop', '2024-12-05 09:55:00'),
+(@ishita_id, 75, 'achievement', 'certificate', 4, 'Received UI/UX Workshop certificate', '2024-12-07 17:00:00'),
+(@ishita_id, 90, 'event_organization', 'event', @event5_id, 'Organized UI/UX Workshop as instructor', '2024-12-07 18:00:00');
 
 -- ============================================
 -- 17. SPONSORSHIP PACKAGES
