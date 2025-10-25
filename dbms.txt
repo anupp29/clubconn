@@ -1,0 +1,190 @@
+
+mysql> SHOW TABLES;
++-----------------------------+
+| Tables_in_clubconn          |
++-----------------------------+
+| activity_feed               |
+| audit_log                   |
+| badges                      |
+| certificates                |
+| club_members                |
+| clubs                       |
+| colleges                    |
+| communities                 |
+| event_proposals             |
+| event_rsvps                 |
+| event_sponsors              |
+| event_volunteers            |
+| events                      |
+| notifications               |
+| points_history              |
+| sponsorship_packages        |
+| sponsorship_requests        |
+| system_settings             |
+| user_badges                 |
+| users                       |
+| v_club_stats                |
+| v_event_participation       |
+| v_leaderboard               |
+| v_upcoming_events_dashboard |
+| v_user_activity_summary     |
++-----------------------------+
+25 rows in set (0.02 sec)
+
+mysql> SHOW VIEWS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VIEWS' at line 1
+mysql> SHOW PROCEDURE STATUS WHERE Db='clubconn';
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db       | Name                        | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| clubconn | sp_award_badge              | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_get_user_dashboard_stats | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_issue_certificate        | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_mark_attendance          | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_register_for_event       | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SHOW FUNCTION STATUS WHERE Db='clubconn';
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db       | Name                        | Type     | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| clubconn | fn_calculate_badge_progress | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_calculate_user_level     | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_event_attendance_rate    | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_event_capacity_status    | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_generate_event_slug      | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
++-----------------------------+
+| Tables_in_clubconn          |
++-----------------------------+
+| activity_feed               |
+| audit_log                   |
+| badges                      |
+| certificates                |
+| club_members                |
+| clubs                       |
+| colleges                    |
+| communities                 |
+| event_proposals             |
+| event_rsvps                 |
+| event_sponsors              |
+| event_volunteers            |
+| events                      |
+| notifications               |
+| points_history              |
+| sponsorship_packages        |
+| sponsorship_requests        |
+| system_settings             |
+| user_badges                 |
+| users                       |
+| v_club_stats                |
+| v_event_participation       |
+| v_leaderboard               |
+| v_upcoming_events_dashboard |
+| v_user_activity_summary     |
++-----------------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT TABLE_NAME, COUNT(*) AS index_count
+    -> FROM information_schema.statistics
+    -> WHERE table_schema = 'clubconn'
+    -> GROUP BY TABLE_NAME;
++----------------------+-------------+
+| TABLE_NAME           | index_count |
++----------------------+-------------+
+| activity_feed        |          10 |
+| audit_log            |           4 |
+| badges               |           5 |
+| certificates         |           9 |
+| club_members         |          12 |
+| clubs                |           6 |
+| colleges             |           4 |
+| communities          |           4 |
+| event_proposals      |           5 |
+| event_rsvps          |          10 |
+| event_sponsors       |           3 |
+| event_volunteers     |           6 |
+| events               |          20 |
+| notifications        |           7 |
+| points_history       |           6 |
+| sponsorship_packages |           2 |
+| sponsorship_requests |           5 |
+| system_settings      |           3 |
+| user_badges          |           6 |
+| users                |           9 |
++----------------------+-------------+
+20 rows in set (0.02 sec)
+
+mysql> SHOW FULL TABLES WHERE TABLE_TYPE = 'VIEW';
++-----------------------------+------------+
+| Tables_in_clubconn          | Table_type |
++-----------------------------+------------+
+| v_club_stats                | VIEW       |
+| v_event_participation       | VIEW       |
+| v_leaderboard               | VIEW       |
+| v_upcoming_events_dashboard | VIEW       |
+| v_user_activity_summary     | VIEW       |
++-----------------------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> SHOW PROCEDURE STATUS WHERE Db = 'clubconn';
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db       | Name                        | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| clubconn | sp_award_badge              | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_get_user_dashboard_stats | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_issue_certificate        | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_mark_attendance          | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | sp_register_for_event       | PROCEDURE | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
++----------+-----------------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SHOW FUNCTION STATUS WHERE Db = 'clubconn';
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db       | Name                        | Type     | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| clubconn | fn_calculate_badge_progress | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_calculate_user_level     | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_event_attendance_rate    | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_event_capacity_status    | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
+| clubconn | fn_generate_event_slug      | FUNCTION | root@localhost | 2025-10-25 12:24:53 | 2025-10-25 12:24:53 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_unicode_ci |
++----------+-----------------------------+----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT TRIGGER_NAME, EVENT_MANIPULATION, EVENT_OBJECT_TABLE
+    -> FROM information_schema.triggers
+    -> WHERE TRIGGER_SCHEMA = 'clubconn';
++---------------------------------------+--------------------+--------------------+
+| TRIGGER_NAME                          | EVENT_MANIPULATION | EVENT_OBJECT_TABLE |
++---------------------------------------+--------------------+--------------------+
+| trg_club_members_after_insert         | INSERT             | club_members       |
+| trg_club_members_after_update         | UPDATE             | club_members       |
+| trg_club_members_after_delete         | DELETE             | club_members       |
+| trg_points_history_after_insert       | INSERT             | points_history     |
+| trg_check_badge_criteria_after_points | INSERT             | points_history     |
+| trg_event_rsvp_notification           | INSERT             | event_rsvps        |
+| trg_event_reminder                    | UPDATE             | events             |
+| trg_users_audit_update                | UPDATE             | users              |
+| trg_prevent_event_deletion            | DELETE             | events             |
+| trg_update_event_status               | UPDATE             | events             |
++---------------------------------------+--------------------+--------------------+
+10 rows in set (0.01 sec)
+
+mysql> SELECT
+    ->     (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='clubconn' AND table_type='BASE TABLE') AS tables_count,
+    ->     (SELECT COUNT(*) FROM information_schema.views WHERE table_schema='clubconn') AS views_count,
+    ->     (SELECT COUNT(*) FROM information_schema.routines WHERE routine_schema='clubconn' AND routine_type='PROCEDURE') AS procedures_count,
+    ->     (SELECT COUNT(*) FROM information_schema.routines WHERE routine_schema='clubconn' AND routine_type='FUNCTION') AS functions_count,
+    ->     (SELECT COUNT(*) FROM information_schema.triggers WHERE trigger_schema='clubconn') AS triggers_count;
++--------------+-------------+------------------+-----------------+----------------+
+| tables_count | views_count | procedures_count | functions_count | triggers_count |
++--------------+-------------+------------------+-----------------+----------------+
+|           20 |           5 |                5 |               5 |             10 |
++--------------+-------------+------------------+-----------------+----------------+
+1 row in set (0.02 sec)
+
+mysql>
