@@ -50,6 +50,7 @@ CREATE TABLE colleges (
     city VARCHAR(100),
     state VARCHAR(100),
     country VARCHAR(100) DEFAULT 'India',
+    pincode VARCHAR(10),
     website_url VARCHAR(500),
     logo_url VARCHAR(500),
     is_active BOOLEAN DEFAULT TRUE,
@@ -66,9 +67,9 @@ CREATE TABLE communities (
     slug VARCHAR(255) UNIQUE NOT NULL,
     description TEXT,
     icon VARCHAR(100),
-    color_primary VARCHAR(7),
-    color_light VARCHAR(7),
-    color_glow VARCHAR(7),
+    color_primary VARCHAR(50),
+    color_light VARCHAR(50),
+    color_glow VARCHAR(50),
     display_order INT DEFAULT 0,
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -244,6 +245,23 @@ CREATE TABLE event_proposals (
     INDEX idx_event (event_id),
     INDEX idx_user (user_id),
     INDEX idx_status (status)
+) ENGINE=InnoDB;
+
+-- Event Feedback Table
+CREATE TABLE event_feedback (
+    feedback_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT UNSIGNED NOT NULL,
+    user_id BIGINT UNSIGNED NOT NULL,
+    rating TINYINT UNSIGNED CHECK (rating BETWEEN 1 AND 5),
+    feedback_text TEXT,
+    would_recommend BOOLEAN DEFAULT TRUE,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_event_user_feedback (event_id, user_id),
+    INDEX idx_event (event_id),
+    INDEX idx_user (user_id),
+    INDEX idx_rating (rating)
 ) ENGINE=InnoDB;
 
 -- ============================================
