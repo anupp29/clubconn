@@ -1,9 +1,16 @@
+"use client"
+
 import { MessageSquare, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 
 export function NewsletterContact() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle newsletter subscription
+  }
+
   return (
     <section className="py-16 md:py-24">
       <div className="container">
@@ -16,12 +23,19 @@ export function NewsletterContact() {
                 Monthly digest of the latest news and updates about ClubConn events, grants, and non-school. Subscribe
                 to stay updated and never miss out.
               </p>
-              <div className="flex gap-2 mb-4">
-                <Input type="email" placeholder="Enter your email" className="flex-1" />
-                <Button>
+              <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
+                <Input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="flex-1"
+                  required
+                  name="email"
+                  suppressHydrationWarning
+                />
+                <Button type="submit" suppressHydrationWarning>
                   <Send className="h-4 w-4" />
                 </Button>
-              </div>
+              </form>
               <a href="#" className="text-sm text-primary hover:underline flex items-center gap-2">
                 <span>RSS Feed</span>
                 <span>→</span>
