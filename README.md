@@ -10,9 +10,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1-38bdf8?logo=tailwind-css)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-12.3-orange?logo=firebase)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Live Demo](https://clubconn.vercel.app) · [Report Bug](https://github.com/anupp29/clubconn/issues) · [Request Feature](https://github.com/anupp29/clubconn/issues)
+[Live Demo](https://clubconn.vercel.app) · [Report Bug](https://github.com/your-repo/issues) · [Request Feature](https://github.com/your-repo/issues)
 
 </div>
 
@@ -20,20 +19,16 @@
 
 ## 📋 Table of Contents
 
-- [About ClubConn](#-about-clubconn)
-- [Features](#-features)
-- [Tech Stack](#%EF%B8%8F-tech-stack)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Environment Setup](#-environment-setup)
-- [Development](#-development)
-- [Deployment](#-deployment)
-- [Security](#-security)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Support](#-support)
-- [Roadmap](#%EF%B8%8F-roadmap)
-- [Acknowledgments](#-acknowledgments)
+- [About ClubConn](#about-clubconn)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Environment Setup](#environment-setup)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -43,11 +38,11 @@ ClubConn is a comprehensive platform designed to connect students with all clubs
 
 ### Why ClubConn?
 
-- **🎯 Centralized Hub**: All clubs, events, and communities in one place
-- **🔍 Easy Discovery**: Find clubs and events that match your interests
-- **📈 Track Progress**: Monitor your achievements, certificates, and participation
-- **🤝 Community Building**: Connect with like-minded students and grow together
-- **⚙️ Admin Tools**: Powerful dashboards for club admins and college administrators
+- **Centralized Hub**: All clubs, events, and communities in one place
+- **Easy Discovery**: Find clubs and events that match your interests
+- **Track Progress**: Monitor your achievements, certificates, and participation
+- **Community Building**: Connect with like-minded students and grow together
+- **Admin Tools**: Powerful dashboards for club admins and college administrators
 
 ---
 
@@ -56,123 +51,109 @@ ClubConn is a comprehensive platform designed to connect students with all clubs
 ### 🏠 Landing Page
 - Modern, responsive hero section with animated grid background
 - Featured clubs showcase with color-coded cards
-- Upcoming events calendar with real-time updates
-- Live statistics and social proof
-- Interactive "How it works" section
-- Comprehensive footer with all navigation links
+- Upcoming events calendar
+- Real-time statistics and social proof
+- How it works section
+- Comprehensive footer with all links
 
 ### 🎪 Events Management
-- Browse all upcoming and past events with advanced filtering
-- Filter by category, date, club, and community
-- Detailed event pages with RSVP functionality
-- Volunteer registration and management system
-- Event proposal submission and sponsorship management
-- Automated event reports with digital certificates
-- Event check-in system with QR codes
+- Browse all upcoming and past events
+- Filter by category, date, and club
+- Event detail pages with RSVP functionality
+- Volunteer registration system
+- Event proposals and sponsorship management
+- Event reports with certificates
 
 ### 🏛️ Clubs Directory
-- Comprehensive list of all campus clubs with search
-- Color-coded club cards with smooth hover effects
-- Detailed club pages featuring:
-  - Mission and vision statements
-  - Committee members showcase with roles
-  - Past events gallery with achievements
+- Comprehensive list of all campus clubs
+- Color-coded club cards with hover effects
+- Detailed club pages with:
+  - About section with mission and vision
+  - Committee members showcase
+  - Past events gallery
   - Upcoming events timeline
-  - Quick navigation menu for easy access
-  - Member statistics and engagement metrics
+  - Quick navigation menu
 
 ### 🌐 Communities
 - Six major communities: Tech, Cultural, Business, Sports, Creative, Social
-- Community-specific event listings and calendars
-- Member statistics and engagement analytics
-- Community-specific color themes and branding
-- Community leaderboards and achievements
+- Community-specific event listings
+- Member statistics and engagement metrics
+- Community-specific color themes
 
 ### 👤 User Profiles
-- Clean username-based URLs (`/u/username`)
-- Public profiles with customizable privacy controls
-- Comprehensive profile information management
+- Username-based URLs (`/u/username`)
+- Public profiles with privacy controls
+- Customizable profile information
 - Social media integration (LinkedIn, GitHub, Twitter, Website)
 - Achievements and accomplishments showcase
-- Club memberships display with roles
-- Activity feed showing recent participation
-- Profile editing with real-time validation and username availability checking
+- Club memberships display
+- Profile editing with real-time validation
 
 ### 🏆 Achievements System
 - Badge collection and progress tracking
 - Multiple badge categories:
-  - 🎯 Participation badges (event attendance, volunteer work)
-  - 👑 Leadership badges (club roles, event organizing)
-  - 💡 Skill badges (technical, creative, communication)
-  - ⭐ Special recognition badges (MVP, innovator)
-- Progress indicators for locked badges with requirements
-- Achievement showcase on user profiles
-- Gamification elements to boost engagement
+  - Participation badges
+  - Leadership badges
+  - Skill badges
+  - Special recognition badges
+- Progress indicators for locked badges
+- Achievement showcase on profiles
 
 ### 📜 Certificates
-- Automated digital certificate generation
-- Blockchain-inspired certificate verification system
-- Download certificates as high-quality PDFs
-- Share certificates on social media platforms
-- Certificate gallery with filtering and search
-- QR code verification for authenticity
-- Certificate templates for different event types
+- Digital certificate generation
+- Certificate verification system
+- Download certificates as PDF
+- Share certificates on social media
+- Certificate gallery with filtering
+- QR code verification
 
 ### 📊 Dashboard
-- Personalized activity feed with recent updates
+- Personalized activity feed
 - Quick stats overview (events attended, clubs joined, certificates earned)
-- Upcoming events recommendations based on interests
-- Recent activity timeline with engagement metrics
+- Upcoming events recommendations
+- Recent activity timeline
 - AI-powered event recommendations
-- Quick access to all platform features
-- Customizable dashboard widgets
+- Quick access to all features
 
 ### 🏅 Leaderboard
-- Campus-wide ranking system with points
-- Top 3 podium display with special recognition
-- Points-based ranking algorithm
+- Campus-wide ranking system
+- Top 3 podium display
+- Points-based ranking
 - Filter by timeframe (all-time, monthly, weekly)
-- User statistics and achievement badges
-- Category-wise leaderboards (participation, leadership, skills)
+- User statistics and achievements
 
 ### 🔐 Authentication
-- Secure email/password authentication
-- Google OAuth 2.0 integration
+- Email/Password authentication
+- Google OAuth integration
 - GitHub OAuth integration
 - Real-time username availability checking
-- Secure profile ownership validation
-- Username setup flow for OAuth users
-- Password reset and email verification
-- Session management and security
+- Secure profile ownership
+- Username setup for OAuth users
 
 ### 👨‍💼 Admin Dashboards
 
 #### Club Admin Dashboard
-- **Event Management**: Create, edit, and delete club events
-- **Member Management**: Add/remove members, assign roles
-- **Volunteer Tracking**: Monitor volunteer hours and contributions
-- **Proposal Review**: Review and approve event proposals
-- **Sponsorship Management**: Track sponsors and partnerships
-- **Analytics Dashboard**: View club performance metrics
-- **Certificate Generation**: Issue certificates to participants
-- **Announcement System**: Send notifications to members
+- Event management (create, edit, delete)
+- Member management
+- Volunteer tracking
+- Proposal review
+- Sponsorship management
+- Analytics and insights
 
 #### College Admin Dashboard
-- **Platform Statistics**: Monitor platform-wide activity
-- **User Management**: Manage student accounts and permissions
-- **Club Oversight**: Approve new clubs and monitor activity
-- **Event Approval**: Review and approve club events
-- **Report Generation**: Generate analytics and activity reports
-- **Activity Monitoring**: Track engagement across communities
-- **System Configuration**: Manage platform settings and features
+- Platform-wide statistics
+- User management
+- Club oversight
+- Event approval system
+- Report generation
+- Activity monitoring
 
 ### 💼 Sponsorship Portal
-- Browse available sponsorship opportunities
-- Submit sponsorship proposals with detailed information
-- Track sponsorship status and approval workflow
-- Sponsor dashboard with analytics and ROI tracking
-- Sponsorship packages and pricing tiers
-- Automated sponsor recognition on event pages
+- Browse sponsorship opportunities
+- Submit sponsorship proposals
+- Track sponsorship status
+- Sponsor dashboard with analytics
+- ROI tracking
 
 ---
 
@@ -197,9 +178,8 @@ ClubConn is a comprehensive platform designed to connect students with all clubs
 
 ### Development Tools
 - **Package Manager**: npm
-- **Code Quality**: ESLint, Prettier, TypeScript
-- **Version Control**: Git & GitHub
-- **CI/CD**: Vercel (automatic deployments)
+- **Code Quality**: ESLint, TypeScript
+- **Version Control**: Git
 
 ---
 
@@ -216,33 +196,33 @@ Before you begin, ensure you have the following installed:
 
 ### Installation
 
-#### 1. Clone the repository
+1. **Clone the repository**
 
-```bash
-git clone https://github.com/anupp29/clubconn.git
+\`\`\`bash
+git clone https://github.com/your-username/clubconn.git
 cd clubconn
-```
+\`\`\`
 
-#### 2. Install dependencies
+2. **Install dependencies**
 
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
-#### 3. Set up Firebase
+3. **Set up Firebase**
 
 Follow the detailed instructions in [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) to:
 - Create a Firebase project
-- Enable Authentication providers (Email/Password, Google, GitHub)
-- Set up Firestore database with proper collections
-- Configure security rules for data protection
-- Get your Firebase configuration credentials
+- Enable Authentication providers
+- Set up Firestore database
+- Configure security rules
+- Get your Firebase configuration
 
-#### 4. Configure Firebase in the project
+4. **Configure Firebase in the project**
 
-The Firebase configuration is already set up in `lib/firebase.ts`. Update it with your own Firebase project credentials:
+The Firebase configuration is already set up in `lib/firebase.ts`. If you need to use your own Firebase project, update the configuration:
 
-```typescript
+\`\`\`typescript
 // lib/firebase.ts
 const firebaseConfig = {
   apiKey: "your-api-key",
@@ -252,37 +232,26 @@ const firebaseConfig = {
   messagingSenderId: "your-sender-id",
   appId: "your-app-id"
 };
-```
+\`\`\`
 
-#### 5. Run the development server
+5. **Run the development server**
 
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
-#### 6. Open your browser
+6. **Open your browser**
 
 Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
-
-#### 7. Seed the database (Optional)
-
-To populate your database with sample data:
-
-```bash
-# Start the dev server and navigate to:
-http://localhost:3000/seed
-```
 
 ---
 
 ## 📁 Project Structure
 
-```
+\`\`\`
 clubconn/
 ├── app/                          # Next.js App Router
 │   ├── (auth)/                   # Auth-related routes
-│   │   ├── login/
-│   │   └── signup/
 │   ├── achievements/             # Achievements page
 │   ├── admin-dashboard/          # Admin dashboard
 │   ├── c/[slug]/                 # Community pages
@@ -346,10 +315,8 @@ clubconn/
 ├── README.md                     # This file
 ├── package.json                  # Dependencies
 ├── tsconfig.json                 # TypeScript config
-├── tailwind.config.ts            # Tailwind configuration
-├── next.config.mjs               # Next.js config
-└── .gitignore                    # Git ignore rules
-```
+└── next.config.mjs               # Next.js config
+\`\`\`
 
 ---
 
@@ -361,7 +328,7 @@ ClubConn uses Vercel's built-in integrations for most services. However, if you'
 
 Create a `.env.local` file in the root directory (this file is gitignored):
 
-```env
+\`\`\`env
 # Firebase Configuration (if using custom project)
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -372,18 +339,13 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 # Vercel Blob (automatically configured on Vercel)
 BLOB_READ_WRITE_TOKEN=your_blob_token
-
-# Optional: Analytics and Monitoring
-NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_id
-```
+\`\`\`
 
 ### Vercel Integration
 
 When deploying to Vercel, the following integrations are automatically configured:
-- **Vercel Blob**: For file storage and image uploads
-- **Vercel Analytics**: For usage analytics and performance monitoring
-- **Automatic HTTPS**: SSL certificates for secure connections
-- **Edge Functions**: For optimal performance worldwide
+- **Vercel Blob**: For file storage
+- **Vercel Analytics**: For usage analytics
 
 ---
 
@@ -391,7 +353,7 @@ When deploying to Vercel, the following integrations are automatically configure
 
 ### Available Scripts
 
-```bash
+\`\`\`bash
 # Start development server
 npm run dev
 
@@ -403,60 +365,38 @@ npm start
 
 # Run linter
 npm run lint
-
-# Fix linting issues
-npm run lint:fix
-
-# Type check
-npm run type-check
-```
+\`\`\`
 
 ### Development Workflow
 
-#### 1. Create a new branch for your feature
-```bash
-git checkout -b feature/your-feature-name
-```
+1. **Create a new branch** for your feature
+   \`\`\`bash
+   git checkout -b feature/your-feature-name
+   \`\`\`
 
-#### 2. Make your changes and test locally
-```bash
-npm run dev
-# Test your changes at http://localhost:3000
-```
+2. **Make your changes** and test locally
 
-#### 3. Run linting and type checking
-```bash
-npm run lint
-npm run type-check
-```
+3. **Commit your changes**
+   \`\`\`bash
+   git add .
+   git commit -m "Add your feature description"
+   \`\`\`
 
-#### 4. Commit your changes
-```bash
-git add .
-git commit -m "feat: add your feature description"
-```
+4. **Push to your branch**
+   \`\`\`bash
+   git push origin feature/your-feature-name
+   \`\`\`
 
-#### 5. Push to your branch
-```bash
-git push origin feature/your-feature-name
-```
-
-#### 6. Create a Pull Request
-- Go to [GitHub Repository](https://github.com/anupp29/clubconn)
-- Click "New Pull Request"
-- Describe your changes and submit
+5. **Create a Pull Request** on GitHub
 
 ### Code Style Guidelines
 
-- ✅ Use TypeScript for all new files
-- ✅ Follow the existing component structure and naming conventions
-- ✅ Use Tailwind CSS for styling (avoid custom CSS when possible)
-- ✅ Use shadcn/ui components for UI elements
-- ✅ Write meaningful commit messages following [Conventional Commits](https://www.conventionalcommits.org/)
-- ✅ Add comments for complex logic and business rules
-- ✅ Keep components small and focused (Single Responsibility Principle)
-- ✅ Use proper TypeScript types instead of `any`
-- ✅ Test your changes thoroughly before submitting
+- Use TypeScript for all new files
+- Follow the existing component structure
+- Use Tailwind CSS for styling (avoid custom CSS)
+- Use shadcn/ui components when possible
+- Write meaningful commit messages
+- Add comments for complex logic
 
 ---
 
@@ -464,17 +404,12 @@ git push origin feature/your-feature-name
 
 ### Deploy to Vercel (Recommended)
 
-#### Method 1: Deploy via GitHub (Automatic)
-
 1. **Push your code to GitHub**
-   ```bash
-   git push origin main
-   ```
 
 2. **Import project in Vercel**
    - Go to [vercel.com](https://vercel.com/)
    - Click "New Project"
-   - Import your GitHub repository: `anupp29/clubconn`
+   - Import your GitHub repository
 
 3. **Configure project**
    - Vercel will automatically detect Next.js
@@ -482,139 +417,50 @@ git push origin feature/your-feature-name
    - Click "Deploy"
 
 4. **Set up integrations**
-   - Add Vercel Blob integration for file storage
-   - Enable Vercel Analytics for monitoring
-
-#### Method 2: Deploy via Vercel CLI
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy to preview
-vercel
-
-# Deploy to production
-vercel --prod
-```
+   - Add Vercel Blob integration
+   - Enable Vercel Analytics
 
 ### Manual Deployment
 
-```bash
+\`\`\`bash
 # Build the project
 npm run build
 
 # The output will be in the .next folder
 # Deploy this folder to your hosting provider
-```
-
-### Post-Deployment Checklist
-
-- ✅ Verify all pages load correctly
-- ✅ Test authentication flows (Email, Google, GitHub)
-- ✅ Check database connections
-- ✅ Verify API routes are working
-- ✅ Test RSVP and event registration
-- ✅ Check certificate generation
-- ✅ Verify admin dashboards are accessible
-- ✅ Test responsive design on mobile devices
+\`\`\`
 
 ---
 
 ## 🔒 Security
 
-ClubConn implements multiple layers of security to protect user data and ensure platform integrity:
-
-### Authentication Security
-- **Multi-Provider Auth**: Email/Password, Google OAuth, GitHub OAuth
-- **Secure Sessions**: Firebase Auth handles session management
-- **Password Requirements**: Minimum 6 characters with complexity validation
-- **Email Verification**: Required for email/password signups
-
-### Database Security
-- **Firestore Security Rules**: Comprehensive rules to control data access
-- **User Data Isolation**: Users can only edit their own data
-- **Username Uniqueness**: Enforced at database level with unique constraints
+- **Firestore Security Rules**: Ensure users can only edit their own data
+- **Authentication**: Required for all sensitive operations
+- **Username Uniqueness**: Enforced at database level
 - **Profile Privacy**: Public profiles are read-only for non-owners
-- **Admin Authorization**: Role-based access control for admin functions
-
-### Input Validation
-- **Form Validation**: All forms use Zod schemas for validation
+- **Input Validation**: All forms use Zod schemas for validation
 - **XSS Protection**: React's built-in XSS protection
 - **CSRF Protection**: Next.js built-in CSRF protection
-- **SQL Injection**: Not applicable (using NoSQL Firestore)
-
-### Best Practices
-- Regular security audits of dependencies
-- Secure environment variable management
-- HTTPS enforcement in production
-- Regular Firebase security rules review
-- Rate limiting on sensitive operations
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! ClubConn is open-source and built by students, for students.
-
-### How to Contribute
+We welcome contributions from the community! Here's how you can help:
 
 1. **Fork the repository**
-   - Click the "Fork" button on [GitHub](https://github.com/anupp29/clubconn)
-
-2. **Clone your fork**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/clubconn.git
-   cd clubconn
-   ```
-
-3. **Create a feature branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-
-4. **Make your changes**
-   - Write clean, documented code
-   - Follow the code style guidelines
-   - Add tests if applicable
-
-5. **Commit your changes**
-   ```bash
-   git commit -m 'feat: Add some AmazingFeature'
-   ```
-
-6. **Push to your branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-
-7. **Open a Pull Request**
-   - Go to the [original repository](https://github.com/anupp29/clubconn)
-   - Click "New Pull Request"
-   - Select your fork and branch
-   - Describe your changes in detail
+2. **Create a feature branch** (`git checkout -b feature/AmazingFeature`)
+3. **Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
+4. **Push to the branch** (`git push origin feature/AmazingFeature`)
+5. **Open a Pull Request**
 
 ### Contribution Guidelines
 
-- ✅ Follow the existing code style and conventions
-- ✅ Write clear, concise commit messages
-- ✅ Add tests for new features when applicable
-- ✅ Update documentation as needed (README, comments)
-- ✅ Ensure your code passes linting (`npm run lint`)
-- ✅ Test thoroughly on different devices and browsers
-- ✅ Be respectful and constructive in discussions
-- ✅ One feature per pull request (keep PRs focused)
-
-### Areas for Contribution
-
-- 🐛 **Bug Fixes**: Report and fix bugs
-- ✨ **New Features**: Propose and implement new features
-- 📝 **Documentation**: Improve docs, add examples
-- 🎨 **UI/UX**: Enhance design and user experience
-- ♿ **Accessibility**: Improve accessibility features
-- 🌐 **Internationalization**: Add multi-language support
-- ⚡ **Performance**: Optimize speed and efficiency
-- 🧪 **Testing**: Add unit and integration tests
+- Follow the existing code style
+- Write clear commit messages
+- Add tests for new features
+- Update documentation as needed
+- Be respectful and constructive
 
 ---
 
@@ -622,90 +468,50 @@ We welcome contributions from the community! ClubConn is open-source and built b
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**MIT License Summary:**
-- ✅ Commercial use allowed
-- ✅ Modification allowed
-- ✅ Distribution allowed
-- ✅ Private use allowed
-- ❗ No warranty provided
-- ❗ License and copyright notice required
-
 ---
 
 ## 🙏 Acknowledgments
 
-ClubConn wouldn't be possible without the amazing open-source community and the following:
-
-- **KKWIEER** for supporting student innovation and providing the platform vision
-- **[shadcn/ui](https://ui.shadcn.com/)** for the beautiful, accessible component library
-- **[Vercel](https://vercel.com/)** for hosting, deployment, and edge network
-- **[Firebase](https://firebase.google.com/)** for authentication and database services
-- **[Next.js Team](https://nextjs.org/)** for the incredible React framework
-- **[Tailwind CSS](https://tailwindcss.com/)** for the utility-first CSS framework
-- All **contributors** and **users** of ClubConn who make this platform better every day
-
-### Special Thanks
-
-- Our amazing student community at KKWIEER
-- Faculty advisors for their guidance and support
-- Beta testers who provided valuable feedback
-- Open-source contributors who helped improve the codebase
+- **KKWIEER** for supporting student innovation
+- **shadcn/ui** for the beautiful component library
+- **Vercel** for hosting and deployment
+- **Firebase** for backend services
+- All contributors and users of ClubConn
 
 ---
 
 ## 📞 Support
 
-Need help? We're here for you! Here's how to get support:
+Need help? Here's how to get support:
 
-### Documentation
-- 📖 **Main README**: You're reading it!
-- 🔥 **Firebase Setup**: [FIREBASE_SETUP.md](./FIREBASE_SETUP.md)
-- 💻 **API Documentation**: Coming soon
-- 🎓 **User Guide**: Coming soon
-
-### Community Support
-- 💬 **GitHub Discussions**: [Start a discussion](https://github.com/anupp29/clubconn/discussions)
-- 🐛 **Bug Reports**: [Open an issue](https://github.com/anupp29/clubconn/issues)
-- 💡 **Feature Requests**: [Open an issue](https://github.com/anupp29/clubconn/issues)
-- 📧 **Email**: support@clubconn.com
-
-### Quick Links
-- [Live Demo](https://clubconn.vercel.app)
-- [GitHub Repository](https://github.com/anupp29/clubconn)
-- [Report Bug](https://github.com/anupp29/clubconn/issues)
-- [Request Feature](https://github.com/anupp29/clubconn/issues)
+- **Documentation**: Check this README and [FIREBASE_SETUP.md](./FIREBASE_SETUP.md)
+- **Issues**: [Open an issue](https://github.com/your-repo/issues) on GitHub
+- **Email**: support@clubconn.com
+- **Discord**: Join our community server
 
 ---
 
-## 📊 Project Statistics
+## 🗺️ Roadmap
 
-<div align="center">
+### Upcoming Features
 
-![GitHub stars](https://img.shields.io/github/stars/anupp29/clubconn?style=social)
-![GitHub forks](https://img.shields.io/github/forks/anupp29/clubconn?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/anupp29/clubconn?style=social)
-
-![GitHub last commit](https://img.shields.io/github/last-commit/anupp29/clubconn)
-![GitHub issues](https://img.shields.io/github/issues/anupp29/clubconn)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/anupp29/clubconn)
-![GitHub](https://img.shields.io/github/license/anupp29/clubconn)
-
-</div>
+- [ ] Mobile app (React Native)
+- [ ] Push notifications
+- [ ] Direct messaging between users
+- [ ] Advanced search and filters
+- [ ] Club analytics dashboard
+- [ ] Event check-in system with QR codes
+- [ ] Integration with college ERP system
+- [ ] Multi-language support
+- [ ] Dark mode improvements
+- [ ] Accessibility enhancements
 
 ---
 
 <div align="center">
 
-### Built with ❤️ for KKWIEER students by Team ClubConn
+**Built with ❤️ for KKWIEER students by Team ClubConn**
 
-**Empowering students to connect, engage, and grow together**
-
-[Website](https://clubconn.vercel.app) · [GitHub](https://github.com/anupp29/clubconn) · [Report Issue](https://github.com/anupp29/clubconn/issues)
-
----
-
-**⭐ Star us on GitHub — it helps!**
-
-Made with passion by students, for students 🎓
+[Website](https://clubconn.vercel.app) · [GitHub](https://github.com/your-repo) · [Twitter](https://twitter.com/clubconn)
 
 </div>

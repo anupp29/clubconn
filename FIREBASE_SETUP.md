@@ -40,23 +40,23 @@ Before you begin, make sure you have:
 
 ### Step 2: Configure Your Project
 
-#### 1. Project Name
-- Enter: `ClubConn` (or your preferred name)
-- Note: Firebase will generate a unique project ID (e.g., `clubconn-xxxxx`)
-- Click **Continue**
+1. **Project Name**
+   - Enter: `ClubConn` (or your preferred name)
+   - Note: Firebase will generate a unique project ID (e.g., `clubconn-xxxxx`)
+   - Click **Continue**
 
-#### 2. Google Analytics (Optional but recommended)
-- Toggle **Enable Google Analytics** (recommended for production)
-- Click **Continue**
+2. **Google Analytics** (Optional but recommended)
+   - Toggle **Enable Google Analytics** (recommended for production)
+   - Click **Continue**
 
-#### 3. Analytics Account
-- Select an existing account or create a new one
-- Accept the terms
-- Click **Create project**
+3. **Analytics Account**
+   - Select an existing account or create a new one
+   - Accept the terms
+   - Click **Create project**
 
-#### 4. Wait for Setup
-- Firebase will take 30-60 seconds to create your project
-- Click **Continue** when ready
+4. **Wait for Setup**
+   - Firebase will take 30-60 seconds to create your project
+   - Click **Continue** when ready
 
 ### Step 3: Register Your Web App
 
@@ -65,6 +65,7 @@ Before you begin, make sure you have:
    - App nickname: `ClubConn Web`
    - ✅ Check **"Also set up Firebase Hosting"** (optional)
    - Click **Register app**
+
 3. **Add Firebase SDK**
    - Copy the Firebase configuration object
    - You'll need this later for `lib/firebase.ts`
@@ -96,26 +97,24 @@ Before you begin, make sure you have:
 
 ### Step 4: Enable GitHub Authentication
 
-#### 1. Create GitHub OAuth App first
+1. **Create GitHub OAuth App** first:
+   - Go to [GitHub Developer Settings](https://github.com/settings/developers)
+   - Click **New OAuth App**
+   - Fill in:
+     - **Application name**: ClubConn
+     - **Homepage URL**: `http://localhost:3000` (for development)
+     - **Authorization callback URL**: Get this from Firebase (next step)
+   - Click **Register application**
+   - Copy the **Client ID**
+   - Click **Generate a new client secret** and copy it
 
-- Go to [GitHub Developer Settings](https://github.com/settings/developers)
-- Click **New OAuth App**
-- Fill in:
-  - **Application name**: ClubConn
-  - **Homepage URL**: `http://localhost:3000` (for development)
-  - **Authorization callback URL**: Get this from Firebase (next step)
-- Click **Register application**
-- Copy the **Client ID**
-- Click **Generate a new client secret** and copy it
-
-#### 2. Configure in Firebase
-
-- Back in Firebase Console, click on **GitHub** provider
-- Toggle **Enable** to ON
-- Copy the **Authorization callback URL** from Firebase
-- Go back to GitHub OAuth App and update the callback URL
-- Paste **Client ID** and **Client Secret** from GitHub into Firebase
-- Click **Save**
+2. **Configure in Firebase**:
+   - Back in Firebase Console, click on **GitHub** provider
+   - Toggle **Enable** to ON
+   - Copy the **Authorization callback URL** from Firebase
+   - Go back to GitHub OAuth App and update the callback URL
+   - Paste **Client ID** and **Client Secret** from GitHub into Firebase
+   - Click **Save**
 
 ### Step 5: Configure Authorized Domains
 
@@ -170,7 +169,7 @@ Security rules control who can read and write data in your Firestore database. C
 
 Replace the default rules with the following:
 
-```javascript
+\`\`\`javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -399,7 +398,7 @@ service cloud.firestore {
     }
   }
 }
-```
+\`\`\`
 
 ### Step 3: Publish Rules
 
@@ -413,24 +412,24 @@ service cloud.firestore {
 
 ### Step 1: Install Firebase CLI
 
-```bash
+\`\`\`bash
 npm install -g firebase-tools
-```
+\`\`\`
 
 ### Step 2: Login to Firebase
 
-```bash
+\`\`\`bash
 firebase login
-```
+\`\`\`
 
 This will open a browser window for authentication.
 
 ### Step 3: Initialize Firebase in Your Project
 
-```bash
+\`\`\`bash
 cd clubconn
 firebase init
-```
+\`\`\`
 
 Select the following options:
 - **Firestore**: Configure security rules and indexes
@@ -448,7 +447,7 @@ Follow the prompts:
 
 Update `lib/firebase.ts` with your Firebase configuration:
 
-```typescript
+\`\`\`typescript
 import { initializeApp, getApps } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
@@ -468,7 +467,7 @@ const auth = getAuth(app)
 const db = getFirestore(app)
 
 export { app, auth, db }
-```
+\`\`\`
 
 ---
 
@@ -484,9 +483,9 @@ Firebase Emulators allow you to:
 
 ### Step 1: Start Emulators
 
-```bash
+\`\`\`bash
 firebase emulators:start
-```
+\`\`\`
 
 This will start:
 - **Authentication Emulator**: http://localhost:9099
@@ -497,7 +496,7 @@ This will start:
 
 Update `lib/firebase.ts` to use emulators in development:
 
-```typescript
+\`\`\`typescript
 import { initializeApp, getApps } from 'firebase/app'
 import { getAuth, connectAuthEmulator } from 'firebase/auth'
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
@@ -515,17 +514,17 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export { app, auth, db }
-```
+\`\`\`
 
 ### Step 3: Seed Test Data
 
 Create a script to seed test data in emulators:
 
-```bash
+\`\`\`bash
 # Run the seed script
 npm run dev
 # Then navigate to http://localhost:3000/seed
-```
+\`\`\`
 
 ---
 
@@ -533,7 +532,7 @@ npm run dev
 
 ### Collections Overview
 
-```
+\`\`\`
 clubconn/
 ├── users/                    # User profiles
 │   └── {userId}/
@@ -606,13 +605,12 @@ clubconn/
         ├── type
         ├── content
         └── timestamp
-```
+\`\`\`
 
 ### Sample Documents
 
 #### User Document
-
-```json
+\`\`\`json
 {
   "uid": "abc123",
   "username": "johndoe",
@@ -629,7 +627,7 @@ clubconn/
   "createdAt": "2025-01-01T00:00:00Z",
   "updatedAt": "2025-01-15T00:00:00Z"
 }
-```
+\`\`\`
 
 ---
 
